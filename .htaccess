@@ -1,0 +1,11 @@
+RewriteEngine on
+
+### END: core3 app root rewrite rules ###
+
+# SECURITY: deny access for .directories, like .git
+RewriteCond %{REQUEST_URI} \..+$
+RewriteCond %{REQUEST_URI} !\.html$
+RewriteRule .* - [L]
+
+RewriteRule ^(.*)$ index.php [QSA,L]
+### END: core3 app root rewrite rules ###
