@@ -19,7 +19,7 @@ test:
 	./vendor/bin/phpunit --stderr --configuration=test/phpunit.xml
 
 lint:
-	./vendor/bin/phpcs --standard=test/phpcs-ruleset.xml class test
+	./vendor/bin/phpcs --standard=test/phpcs-ruleset.xml app test
 
 clean:
 	rm -rf coverage-report-html
