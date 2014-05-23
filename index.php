@@ -3,8 +3,7 @@
  * This is the application router
  */
 
-require_once 'core3/class/Core/Bootstrapper.php';
-spl_autoload_register('Core3\Core\Bootstrapper::autoload');
+require_once 'bootstrap.php';
 
 $request = '';
 if (isset($_SERVER['REDIRECT_URL'])) {
@@ -13,7 +12,7 @@ if (isset($_SERVER['REDIRECT_URL'])) {
     $request = $_SERVER['REQUEST_URI'];
 }
 
-$router = new Core3\Web\RequestRouter();
+$router = new \Web\RequestRouter();
 $router->setApplicationDirectoryRoot(__DIR__);
 $router->setApplicationWebRoot('/app1');  // XXX TODO FIXME how should we set this up properly? it is only needed when app is not in root vhost
 $router->route($request);
