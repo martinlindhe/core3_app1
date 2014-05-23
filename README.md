@@ -14,9 +14,9 @@ In the app root, create a symlink named "core3" to core3 root directory:
   ln -s /Users/ml/dev/core3 core3
 
 
-## OSX SETUP:
+## OSX SETUP
 
-On OSX, create a symlink in /Library/WebServer
+On OSX, assuming you have Apache and PHP enabled, create a symlink in /Library/WebServer:
 
   sudo ln -s /Users/ml/dev/core3_app1/ /Library/WebServer/Documents/app1
 
@@ -30,22 +30,6 @@ change
   </Directory>
 
 
-  sudo nano /etc/apache2/httpd.conf
-
-Enable php:
-
-  LoadModule php5_module libexec/apache2/libphp5.so
-
-save & exit
-
-  sudo apachectl restart
-
-xxxx Set up an apache vhost with the root directory pointing to core3_app1
-and point your browser at it.
-
-xxxx Put your app in the app subfolder
-
-## END OSX SETUP
 
 
 # TODO
@@ -61,5 +45,3 @@ TODO later: composer dependency for core3 ?
 XXX TODO SECURITY .htaccess rewrite regel för att blocka .git katalogen funkar inte!!!!
 
 
-
-XXXX DROP angular.js directory and checkout with composer!
