@@ -35,13 +35,15 @@ change
 # TODO
 
 XXX TODO rewrite rule to map vendor/components/angular.js to /js/angular.js web path
+later: composer dependency for core3 ?
+
+
+
+# TODO .htaccess
+
+XXX TODO SECURITY .htaccess rewrite regel för att blocka .git katalogen funkar inte!!!!
 XXX TODO dont expose vendor path on web server!!!!!
 
 
-XXXX TODO config path to core3 with a symlink in app root!!!
-
-TODO later: composer dependency for core3 ?
-
-XXX TODO SECURITY .htaccess rewrite regel för att blocka .git katalogen funkar inte!!!!
 
 
