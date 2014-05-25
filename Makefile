@@ -21,5 +21,8 @@ test:
 lint:
 	./vendor/bin/phpcs --standard=test/phpcs-ruleset.xml app test
 
+ctags:
+	ctags --languages=PHP --exclude=vendor --exclude=.git --exclude=composer.phar -R -f .tags
+
 clean:
 	rm -rf coverage-report-html

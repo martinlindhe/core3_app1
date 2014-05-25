@@ -1,0 +1,29 @@
+{
+    "build_systems":
+    [
+        {
+            "name": "List",
+            "shell_cmd": "ls -l"
+        }
+    ],
+    "folders":
+    [
+        {
+            "path": ".",
+            "name": "app1",
+            "folder_exclude_patterns": ["coverage-report-html"],
+            "file_exclude_patterns": ["composer.phar", "composer.lock", ".tags"]
+        }
+    ],
+    "settings":
+    {
+        "tab_size": 4,
+        "rulers": [120],
+        "ensure_newline_at_eof_on_save": true,
+        "trim_trailing_white_space_on_save": true,
+        "translate_tabs_to_spaces": true,
+        "xdebug": {
+            "url": "http://localhost/app1/",
+        }
+    }
+}
