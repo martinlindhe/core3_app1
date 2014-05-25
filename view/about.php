@@ -1,7 +1,7 @@
 <html>
 
 <body>
-hejsan från core3_app1 about.html !
+about app1
 </body>
 
 </html>

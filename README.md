@@ -30,19 +30,16 @@ change
   </Directory>
 
 
+Create a symlink for angular.js to be accessable in the web root:
+
+  ln -s /Users/ml/dev/core3_app1/vendor/components/angular.js/ js/angular.js
+
 
 
 # TODO
 
-XXX TODO rewrite rule to map vendor/components/angular.js to /js/angular.js web path
 later: composer dependency for core3 ?
 
-
-
-# TODO .htaccess
-
-XXX TODO SECURITY .htaccess rewrite regel för att blocka .git katalogen funkar inte!!!!
-XXX TODO dont expose vendor path on web server!!!!!
 
 
 
