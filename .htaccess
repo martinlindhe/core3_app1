@@ -1,9 +1,9 @@
 Options +FollowSymLinks -Indexes
 
-
 RedirectMatch 404 /\.git
-
 
 RewriteEngine on
 RewriteRule ^js/ - [L]
+RewriteRule ^css/ - [L]
+RewriteRule ^partials/ - [L]
 RewriteRule ^(.*)$ index.php [QSA,L]

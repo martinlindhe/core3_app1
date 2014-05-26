@@ -5,3 +5,4 @@ composer.lock
 coverage-report-html
 *.sublime-workspace
 .tags
+.tags_sorted_by_file

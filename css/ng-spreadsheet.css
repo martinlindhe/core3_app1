@@ -1,0 +1,17 @@
+.coreSpreadsheet {
+	font-family: sans-serif;
+}
+.coreSpreadsheet tr > th {
+	text-align: center;
+	font-size: 20px;
+	background: #EEE;
+	cursor: pointer;
+}
+.coreSpreadsheet tr > td {
+	border: 1px solid #EEE;
+}
+
+.selectedColumn {
+	background: #338899;
+	color: #FFF;
+}
