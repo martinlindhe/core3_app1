@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" ng-app="indexApp">
+<html lang="en">
 <!--
 TODO: wrap this in a module
 TODO: map all of this into a <spreadsheet> tag!?
@@ -19,9 +19,8 @@ TODO: pagination
 -->
 	<script src="js/ng1.2.16/angular.min.js"></script>
 	<script src="js/ng1.2.16/angular-route.js"></script>
-
 	<!-- <script src="js/angular.js/i18n/angular-locale_sv-se.js"></script> -->
-	<script src="js/app.js"></script>
+
 	<!--
 	<script src="js/ng-spreadsheet.js"></script>
 	<link href="css/ng-spreadsheet.css" rel="stylesheet" type="text/css"/>
@@ -30,13 +29,18 @@ TODO: pagination
 
 <body>
 
-<div ng-controller="MainController">
+<div ng-app="bookApp" ng-controller="MainController">
 
-	<a href="/Book/Moby">Moby</a> |
-	<a href="/Book/Moby/ch/1">Moby: Ch1</a> |
-	<a href="/Book/Gatsby">Gatsby</a> |
-	<a href="/Book/Gatsby/ch/4?key=value">Gatsby: Ch4</a> |
-	<a href="/Book/Scarlet">Scarlet Letter</a><br/>
+	<script src="js/books.js"></script>
+
+	<input ng-model="person.name" type="text" placeholder="Your name">
+	<h1>Hello {{ person.name }}</h1>
+
+	<a href="/app1/books/Book/Moby">Moby</a> |
+	<a href="/app1/books/Book/Moby/ch/1">Moby: Ch1</a> |
+	<a href="/app1/books/Book/Gatsby">Gatsby</a> |
+	<a href="/app1/books/Book/Gatsby/ch/4?key=value">Gatsby: Ch4</a> |
+	<a href="/app1/books/Book/Scarlet">Scarlet Letter</a><br/>
 
 	<div ng-view></div>
 

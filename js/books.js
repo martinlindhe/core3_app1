@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('indexApp', ['ngRoute'])
+angular.module('bookApp', ['ngRoute'])
 	.controller('MainController', function($scope, $route, $routeParams, $location) {
 		$scope.$route = $route;
 		$scope.$location = $location;
@@ -18,18 +18,16 @@ angular.module('indexApp', ['ngRoute'])
 	})
 
 	.config(function($routeProvider, $locationProvider) {
+		var root = '/app1/';
 		$routeProvider
-		.when('/Book/:bookId', {
-			templateUrl: '/app1/partials/book.html',
+		.when(root + 'books/Book/:bookId', {
+			templateUrl: root + 'partials/book.html',
 			controller: 'BookController'
 		})
-		.when('/Book/:bookId/ch/:chapterId', {
-			templateUrl: '/app1/partials/chapter.html',
+		.when(root + 'books/Book/:bookId/ch/:chapterId', {
+			templateUrl: root + 'partials/chapter.html',
 			controller: 'ChapterController'
-		})/*
-		.otherwise({
-			redirectTo: '/?ERROR_IN_ROUTING'
-		})*/;
+		});
 
 		// configure html5 to get links working on jsfiddle
 		$locationProvider.html5Mode(true);
