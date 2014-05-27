@@ -1,6 +1,6 @@
 {
 	"require": {
-		"components/angular.js": "1.3.0-beta.7"
+		"components/angular.js": "1.2.x-dev"
 	},
 	"require-dev": {
 		"squizlabs/php_codesniffer": "2.0.x-dev",

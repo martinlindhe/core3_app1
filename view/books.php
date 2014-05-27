@@ -9,17 +9,10 @@ TODO: pagination
 -->
 <head>
 	<title>My ng App</title>
-<!--
+
 	<script src="js/angular.js/angular.js"></script>
 	<script src="js/angular.js/angular-route.js"></script>
-
-	FIXME the routing stuff works on 1.2.16 and is broken somehow on 1.3-alpha!!!
-		so set a dependency on right stable version in composer!
-		ALSO TODO - look up changes in angular 1.3-...
--->
-	<script src="js/ng1.2.16/angular.min.js"></script>
-	<script src="js/ng1.2.16/angular-route.js"></script>
-	<!-- <script src="js/angular.js/i18n/angular-locale_sv-se.js"></script> -->
+	<script src="js/angular.js/i18n/angular-locale_sv-se.js"></script>
 
 	<!--
 	<script src="js/ng-spreadsheet.js"></script>
