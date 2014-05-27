@@ -18,14 +18,15 @@ angular.module('bookApp', ['ngRoute'])
 	})
 
 	.config(function($routeProvider, $locationProvider) {
-		var root = '/app1/';
+		var urlRoot = '/app1/books';
+		var templateRoot = '/app1/partials/books';
 		$routeProvider
-		.when(root + 'books/Book/:bookId', {
-			templateUrl: root + 'partials/book.html',
+		.when(urlRoot + '/Book/:bookId', {
+			templateUrl: templateRoot + '/book.html',
 			controller: 'BookController'
 		})
-		.when(root + 'books/Book/:bookId/ch/:chapterId', {
-			templateUrl: root + 'partials/chapter.html',
+		.when(urlRoot + '/Book/:bookId/ch/:chapterId', {
+			templateUrl: templateRoot + '/chapter.html',
 			controller: 'ChapterController'
 		});
 

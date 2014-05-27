@@ -1,31 +1,30 @@
 <!doctype html>
 <html lang="en">
 <!--
-TODO: wrap this in a module
-TODO: map all of this into a <spreadsheet> tag!?
-TODO: with css, mark the currently sorted-by column
-TODO: load table data with json
-TODO: pagination
+TODO: add login widget using angular-ui stuff, that shows "logged in as xxx" when user is logged in
 -->
 <head>
-	<title>My ng App</title>
+	<title>books</title>
 
 	<script src="/app1/js/angular.js/angular.js"></script>
 	<script src="/app1/js/angular.js/angular-route.js"></script>
 	<script src="/app1/js/angular.js/i18n/angular-locale_sv-se.js"></script>
-
-	<!--
-	<script src="js/ng-spreadsheet.js"></script>
-	<link href="css/ng-spreadsheet.css" rel="stylesheet" type="text/css"/>
-	-->
 </head>
 
 <body>
 
 <div ng-app="bookApp">
 	<div ng-controller="MainController">
+		<script src="/app1/js/ng-books.js"></script>
 
-		<script src="/app1/js/books.js"></script>
+<?php
+// TODO move to demo view
+echo 'request: '.$request.'<br/>';
+echo 'view: '.$view.'<br/>';
+echo 'param:<br/>';
+var_dump($param);
+
+?>
 
 		<input ng-model="person.name" type="text" placeholder="Your name">
 		<h1>Hello {{ person.name }}</h1>
@@ -38,7 +37,7 @@ TODO: pagination
 
 		<div ng-view></div>
 
-		<hr />
+		<hr/>
 
 		<pre>$location.path() = {{$location.path()}}</pre>
 		<pre>$route.current.templateUrl = {{$route.current.templateUrl}}</pre>
