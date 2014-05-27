@@ -24,5 +24,8 @@ lint:
 ctags:
 	ctags --languages=PHP --exclude=vendor --exclude=.git --exclude=composer.phar -R -f .tags
 
+tidy:
+	find partials -name "*.html" -print0 | xargs -0 -t -n 1 tidy -qe
+
 clean:
 	rm -rf coverage-report-html

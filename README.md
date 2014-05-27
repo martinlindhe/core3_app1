@@ -40,3 +40,5 @@ Create a symlink for angular.js to be accessable in the web root:
 
 later: composer dependency for core3 ?
 
+Makefile: "tidy": TODO print file name before each call to tidy, how?!
+
