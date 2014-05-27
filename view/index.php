@@ -21,7 +21,8 @@
 
 angular.module('loginApp', [])
 	.controller('RegisterController', function($scope, $http) {
-
+		// FIXME reset with custom directive "username" dont seem to work!?
+		// FIXME also reset wont empty input in failed validation-form like email
 		$scope.master = {};
 		$scope.update = function(user) {
 			$scope.master = angular.copy(user);
@@ -45,7 +46,7 @@ angular.module('loginApp', [])
 					$http({
 						method: 'POST',
 						url: '/app1/api/core-username-free',
-						data: {'field': viewValue}
+						data: {'username': viewValue}
 					}).success(function(data,status,headers,cfg) {
 						ctrl.$setValidity('unique', data.isAvailable);
 					}).error(function(data,status,headers,cfg) {
