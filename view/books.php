@@ -10,9 +10,9 @@ TODO: pagination
 <head>
 	<title>My ng App</title>
 
-	<script src="js/angular.js/angular.js"></script>
-	<script src="js/angular.js/angular-route.js"></script>
-	<script src="js/angular.js/i18n/angular-locale_sv-se.js"></script>
+	<script src="/app1/js/angular.js/angular.js"></script>
+	<script src="/app1/js/angular.js/angular-route.js"></script>
+	<script src="/app1/js/angular.js/i18n/angular-locale_sv-se.js"></script>
 
 	<!--
 	<script src="js/ng-spreadsheet.js"></script>
@@ -25,7 +25,7 @@ TODO: pagination
 <div ng-app="bookApp">
 	<div ng-controller="MainController">
 
-		<script src="js/books.js"></script>
+		<script src="/app1/js/books.js"></script>
 
 		<input ng-model="person.name" type="text" placeholder="Your name">
 		<h1>Hello {{ person.name }}</h1>
