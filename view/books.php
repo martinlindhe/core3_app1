@@ -11,6 +11,7 @@
 <body>
 
 <div ng-app="bookApp">
+
 	<div ng-controller="MainController">
 		<script src="/app1/js/ng-books.js"></script>
 
