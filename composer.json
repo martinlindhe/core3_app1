@@ -1,6 +1,7 @@
 {
 	"require": {
-		"components/angular.js": "1.2.x-dev"
+		"components/angular.js": "1.2.x-dev",
+		"angular-ui/bootstrap": "dev-master"
 	},
 	"require-dev": {
 		"squizlabs/php_codesniffer": "2.0.x-dev",
