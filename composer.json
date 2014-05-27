@@ -1,7 +1,6 @@
 {
 	"require": {
 		"php": ">=5.3.0",
-		"leafo/scssphp": "0.0.10",
 		"components/angular.js": "1.2.x-dev",
 		"angular-ui/bootstrap": "dev-master"
 	},
