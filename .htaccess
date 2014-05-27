@@ -6,4 +6,5 @@ RewriteEngine on
 RewriteRule ^js/ - [L]
 RewriteRule ^css/ - [L]
 RewriteRule ^partials/ - [L]
+RewriteRule ^api/ - [L]
 RewriteRule ^(.*)$ index.php [QSA,L]

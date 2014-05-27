@@ -12,7 +12,7 @@
             "path": ".",
             "name": "app1",
             "folder_exclude_patterns": ["coverage-report-html"],
-            "file_exclude_patterns": ["composer.phar", "composer.lock", ".tags"]
+            "file_exclude_patterns": ["composer.phar", "composer.lock", ".tags", ".tags_sorted_by_file"]
         }
     ],
     "settings":

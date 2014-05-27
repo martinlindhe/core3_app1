@@ -2,8 +2,6 @@
 <html lang="en">
 <!--
 TODO: with css, mark the currently sorted-by column
-TODO: wrap this in a module
-TODO: load table data with json
 TODO: pagination
 -->
 <head>
@@ -12,7 +10,6 @@ TODO: pagination
 	<script src="/app1/js/angular.js/angular.js"></script>
 	<script src="/app1/js/angular.js/angular-route.js"></script>
 	<script src="/app1/js/angular.js/i18n/angular-locale_sv-se.js"></script>
-
 
 	<script src="/app1/js/ng-spreadsheet.js"></script>
 	<link href="/app1/css/ng-spreadsheet.css" rel="stylesheet" type="text/css"/>

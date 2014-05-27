@@ -1,8 +1,5 @@
 <!doctype html>
 <html lang="en">
-<!--
-TODO: add login widget using angular-ui stuff, that shows "logged in as xxx" when user is logged in
--->
 <head>
 	<title>books</title>
 
@@ -16,15 +13,6 @@ TODO: add login widget using angular-ui stuff, that shows "logged in as xxx" whe
 <div ng-app="bookApp">
 	<div ng-controller="MainController">
 		<script src="/app1/js/ng-books.js"></script>
-
-<?php
-// TODO move to demo view
-echo 'request: '.$request.'<br/>';
-echo 'view: '.$view.'<br/>';
-echo 'param:<br/>';
-var_dump($param);
-
-?>
 
 		<input ng-model="person.name" type="text" placeholder="Your name">
 		<h1>Hello {{ person.name }}</h1>
