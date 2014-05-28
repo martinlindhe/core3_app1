@@ -42,7 +42,11 @@ if ($param[0] == 'compile') {
 	}
 
 	$scssMtime = filemtime($scssFile);
-	$cachedMtime = filemtime($cachedFile);
+
+	$cachedMtime = 0;
+	if (file_exists($cachedFile)) {
+		$cachedMtime = filemtime($cachedFile);
+	}
 
 	header('Content-Type: text/css');
 
