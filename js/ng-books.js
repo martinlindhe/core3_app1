@@ -20,6 +20,7 @@ angular.module('bookApp', ['ngRoute'])
 	.config(function($routeProvider, $locationProvider) {
 		var urlRoot = '/app1/books';
 		var templateRoot = '/app1/partials/books';
+
 		$routeProvider
 		.when(urlRoot + '/Book/:bookId', {
 			templateUrl: templateRoot + '/book.html',

@@ -3,9 +3,9 @@
 <head>
 	<title>app1</title>
 
-	<script src="/app1/js/angular.js/angular.js"></script>
-	<script src="/app1/js/angular.js/angular-route.js"></script>
-	<script src="/app1/js/angular.js/i18n/angular-locale_sv-se.js"></script>
+	<script src="/app1/js/angularjs/angular.js"></script>
+	<script src="/app1/js/angularjs/angular-route.js"></script>
+	<script src="/app1/js/angularjs/i18n/angular-locale_sv-se.js"></script>
 
 <style type="text/css">
   .css-form input.ng-invalid.ng-dirty {

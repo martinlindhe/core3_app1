@@ -29,3 +29,10 @@ tidy:
 
 clean:
 	rm -rf coverage-report-html
+
+
+jsmin:
+	cd js
+	java -jar ./../vendor/packagist/closurecompiler-bin/bin/compiler.jar --js ng-books.js --js_output_file ng-books.min.js --create_source_map ng-books.min.map
+	java -jar ./../vendor/packagist/closurecompiler-bin/bin/compiler.jar --js ng-spreadsheet.js --js_output_file ng-spreadsheet.min.js --create_source_map ng-spreadsheet.min.map
+	cd ..
