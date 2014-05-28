@@ -9,14 +9,12 @@
 </head>
 
 <body>
-
-
 <!--
 TODO: with css, mark the currently sorted-by column
 TODO: pagination
 -->
 <div ng-app="coreSpreadsheet">
-	<link href="/app1/scss/compile/ng-spreadsheet" rel="stylesheet" type="text/css"/>
+	<link href="/app1/scss/ng-spreadsheet" rel="stylesheet" type="text/css"/>
 	<script src="/app1/js/ng-spreadsheet.js"></script>
 
 	<div ng-controller="SpreadsheetController">
