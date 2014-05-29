@@ -15,34 +15,36 @@
 	<script src="/app1/js/ng-register-user.js"></script>
 
 	Register new user:<br/>
-	<form name="signup_form" class="register-form" novalidate ng-submit="registerFormSubmit()">
-		<input type="text" ng-model="signup.name" name="userName" required ng-minlength=3 ng-maxlength=20 username-check placeholder="Your username"/>
+
+	<form name="signupForm" class="register-form" novalidate ng-submit="formSubmit()">
+		<input type="text" ng-model="signup.name" name="userName" required username-check ng-minlength=3 ng-maxlength=8 placeholder="Your username"/>
 		<input type="password" ng-model="signup.pass" name="userPass" required ng-minlength=6 placeholder="Password"/>
 		<input type="email" ng-model="signup.email" name="userEmail" required placeholder="Email Address"/>
 
- 		<input type="checkbox" ng-model="signup.agree" name="userAgree" required/>
+		<input type="checkbox" ng-model="signup.agree" name="userAgree" required/>
 		I agree
-
-		<button type="submit" ng-disabled="signup_form.$invalid">REGISTER</button>
+<button ng-click="getFormName()">CLICK</button>
+		<button type="submit" ng-disabled="signupForm.$invalid">REGISTER</button>
 	</form>
+	typed name is {{ userName }}
 
 	<div ng-show="!signup.agree">Please agree.</div>
 
-	<div ng-show="signup_form.userName.$dirty && signup_form.userName.$invalid">USER:
-		<span ng-show="signup_form.userName.$error.required">Username required.</span>
+	<div class="errors">
+		<div ng-show="signupForm.userName.$dirty && signupForm.userName.$invalid">USER:
+			<span ng-show="signupForm.userName.$error.required">Username required.</span>
+			<span ng-show="signupForm.userName.$error.minlength">Username is too short.</span>
+			<span ng-show="signupForm.userName.$error.maxlength">Username is too long.</span>
+			<span ng-show="signupForm.userName.$error.unique">Username is taken.</span>
+		</div>
 
-		<!-- TODO: error.minlenght and maxlength dont work for username ... -->
-		<span ng-show="signup_form.userName.$error.minlength">Username is too short.</span>
-		<span ng-show="signup_form.userName.$error.maxlength">Username is too long.</span>
-		<span ng-show="signup_form.userName.$error.unique">Username is taken.</span>
-	</div>
+		<div ng-show="signupForm.userEmail.$dirty && signupForm.userEmail.$invalid">EMAIL:
+			<span ng-show="signupForm.userEmail.$error.email">This is not a valid email.</span>
+		</div>
 
-	<div ng-show="signup_form.userEmail.$dirty && signup_form.userEmail.$invalid">EMAIL:
-		<span ng-show="signup_form.userEmail.$error.email">This is not a valid email.</span>
-	</div>
-
-	<div ng-show="signup_form.userPass.$dirty && signup_form.userPass.$invalid">PWD:
-		<span ng-show="signup_form.userPass.$error.minlength">Password must be at least 6 letters.</span>
+		<div ng-show="signupForm.userPass.$dirty && signupForm.userPass.$invalid">PWD:
+			<span ng-show="signupForm.userPass.$error.minlength">Password must be at least 6 letters.</span>
+		</div>
 	</div>
 </div>
 
