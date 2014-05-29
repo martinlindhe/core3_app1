@@ -2,29 +2,32 @@
 
 // registerFormSubmit
 angular.module('registerUserApp', [])
-	.controller('RegisterController', function($scope, $http) {
+	.controller('FormController', function($scope, $http) {
 
-		$scope.formSubmit = function() {
-			console.log("trying to register");
+		$scope.addUser = function(userData) {
+			console.log("trying to register " + userData.username);
 
 			// TODO call api with register attempt
+
+			// XXX fails to access form properties
 
 			$http({
 				method: 'POST',
 				url: '/app1/api-core-register',
-				data: {'username': viewValue}  // TODO Rest of the params
+				data: {
+					'username': userData.username,
+					'password': userData.password,
+					'email': userData.email
+				}
 			}).success(function(data,status,headers,cfg) {
 				ctrl.$setValidity('unique', data.isAvailable);
 				// TODO STORE session auth token & change state to logged in
 
-			}); // TODO on failure, show ui error message
+			}).error(function(data, status, headers, config) {
+				// TODO raise UI error that communication failed
+			});
 		};
-
-		$scope.getFormName = function() {
-			console.log($scope.signupForm.$userName);
-		}
 	})
-
 
 
 	/**
@@ -32,15 +35,14 @@ angular.module('registerUserApp', [])
 	 */
 	.directive('usernameCheck', function($http) {
 		var toId;
+		// FIXME, using this usernmae check the register form dont work. "username" is not available on form subit for example
 		return {
 			restrict: 'A',
 			require: 'ngModel',
 			link: function(scope, elm, attrs, ctrl) {
 				ctrl.$parsers.unshift(function(viewValue) {
 					// TODO can we inherit checks from normal "text" checking somehow?
-console.log("minlen " + attrs.ngMinlength);
-
-console.log("name = " + scope.signupForm.userName.value);
+					console.log("minlen " + attrs.ngMinlength);
 
 					if (attrs.ngMinlength) {
 						if (viewValue.length < attrs.ngMinlength) {
