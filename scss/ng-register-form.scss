@@ -1,0 +1,11 @@
+.register-form input.ng-invalid.ng-dirty {
+	background-color: #FA787E;
+}
+
+.register-form input.ng-valid.ng-dirty {
+	background-color: #78FA89;
+}
+
+.register-form input.ng-pristine {
+	border:1px solid Gold;
+}

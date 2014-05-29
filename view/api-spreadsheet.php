@@ -1,7 +1,5 @@
 <?php
 
-header('Content-Type: application/json'); // /XXX right?
-
 $arr = array(
 	array('id'=>1, 'name'=>"mr mr", 'decimalNumber'=>12.13, 'datestamp'=>1400078166806),
 	array('id'=>2, 'name'=>"arbar", 'decimalNumber'=>10.13, 'datestamp'=>1200078556806),
@@ -10,4 +8,5 @@ $arr = array(
 	array('id'=>5, 'name'=>"overrp", 'decimalNumber'=>5, 'datestamp'=>900078166806),
 );
 
+header('Content-Type: application/json');
 echo json_encode($arr);
