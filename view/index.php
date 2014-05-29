@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" ng-app="registerUserApp">
 <head>
 	<title>app1</title>
 
@@ -9,19 +9,19 @@
 
 </head>
 
-<body ng-app="registerUserApp">
-<div ng-controller="RegisterController">
+<body>
+<div>
 	<link href="/app1/scss/ng-register-form" rel="stylesheet" type="text/css"/>
 	<script src="/app1/js/ng-register-user.js"></script>
 
 	Register new user:<br/>
 
-	<form name="signupForm" class="register-form" novalidate ng-submit="formSubmit()">
-		<input type="text" ng-model="signup.name" name="userName" required username-check ng-minlength=3 ng-maxlength=8 placeholder="Your username"/>
-		<input type="password" ng-model="signup.pass" name="userPass" required ng-minlength=6 placeholder="Password"/>
-		<input type="email" ng-model="signup.email" name="userEmail" required placeholder="Email Address"/>
+	<form name="signupForm" class="register-form" novalidate ng-submit="addUser(newUser)" ng-controller="FormController">
+		<input type="text" ng-model="newUser.username" required ng-minlength=3 ng-maxlength=8 placeholder="Your username"/>
+		<input type="password" ng-model="newUser.password" required ng-minlength=6 placeholder="Password"/>
+		<input type="email" ng-model="newUser.email" required placeholder="Email Address"/>
 
-		<input type="checkbox" ng-model="signup.agree" name="userAgree" required/>
+		<input type="checkbox" ng-model="newUser.agree" required/>
 		I agree
 <button ng-click="getFormName()">CLICK</button>
 		<button type="submit" ng-disabled="signupForm.$invalid">REGISTER</button>
