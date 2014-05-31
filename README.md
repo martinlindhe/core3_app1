@@ -14,6 +14,9 @@ In the app root, create a symlink named "core3" to core3 root directory:
   ln -s /Users/ml/dev/core3 core3
 
 
+
+
+
 ## OSX SETUP
 
 On OSX, assuming you have Apache and PHP enabled, create a symlink in /Library/WebServer:
