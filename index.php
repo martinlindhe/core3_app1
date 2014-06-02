@@ -22,7 +22,7 @@ $router->setApplicationWebRoot('/app1');  // XXX TODO FIXME how should we set th
  */
 $router->registerRoute('scss', function($params) // XXX maybe param should be "/app1/scss" for clarity
 {
-    $viewName = $params[0]; // base name of the scss file
+    $viewName = $params[0]; ///< base name of the scss file
 
     $scss = new \Writer\Scss();
 
@@ -36,21 +36,12 @@ $router->registerRoute('scss', function($params) // XXX maybe param should be "/
         http_response_code(304); // Not Modified
         return;
     } catch (\Exception $ex) {
-        http_response_code(400); // Bad Request
         
         // TODO set different http response code depending on the exception type
-        // TODO make this generic handling for api calls & resonse generation
 
-        $arr = array(
-            'status'    => 'exception',
-            'exception' => get_class($ex),
-            'message'   => htmlentities($ex->getMessage()),
-            'file'      => htmlentities($ex->getFile()),
-            'line'      => $ex->getLine(),
-        );
-
+        http_response_code(400); // Bad Request
         header('Content-Type: application/json');
-        return json_encode($arr, JSON_UNESCAPED_SLASHES);
+        return \ResponseError::exceptionToJson($ex);
     }
 });
 
