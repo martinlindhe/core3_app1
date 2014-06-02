@@ -18,7 +18,7 @@ $router->setApplicationWebRoot('/app1');  // XXX TODO FIXME how should we set th
 
 
 /**
- * Compiles scss template to css, or serves a cached version if exists
+ * Compiles SCSS to CSS stylesheets on demand
  */
 $router->registerRoute('scss', function($params) // XXX maybe param should be "/app1/scss" for clarity
 {
