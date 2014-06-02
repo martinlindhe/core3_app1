@@ -24,11 +24,34 @@ $router->registerRoute('scss', function($params) // XXX maybe param should be "/
 {
     $viewName = $params[0]; // base name of the scss file
 
-    // XXX untangle http response codes / api responses from Scss class
     $scss = new \Writer\Scss();
 
     $scss->setImportPath(realpath(__DIR__.'/scss'));
-    return $scss->handle($viewName);
+
+    header('Content-Type: text/css');
+
+    try {
+        return $scss->handle($viewName);
+    } catch (\CachedInClientException $ex) {
+        http_response_code(304); // Not Modified
+        return;
+    } catch (\Exception $ex) {
+        http_response_code(400); // Bad Request
+        
+        // TODO set different http response code depending on the exception type
+        // TODO make this generic handling for api calls & resonse generation
+
+        $arr = array(
+            'status'    => 'exception',
+            'exception' => get_class($ex),
+            'message'   => htmlentities($ex->getMessage()),
+            'file'      => htmlentities($ex->getFile()),
+            'line'      => $ex->getLine(),
+        );
+
+        header('Content-Type: application/json');
+        return json_encode($arr, JSON_UNESCAPED_SLASHES);
+    }
 });
 
 
