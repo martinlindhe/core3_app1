@@ -11,7 +11,6 @@ if (empty($input->username) || empty($input->password) || empty($input->email)) 
 
 } else {
 	$res = array(
-		'inResponseTo' => 'registerUser',
 		'status' => 'success',
 		'message' => 'user '.$input->username.' registered'
 	);

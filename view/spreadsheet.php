@@ -1,4 +1,11 @@
 <!doctype html>
+
+<!--
+TODO: fill a rectangular area of the spreadsheet with svg/spin.svg and "loading" text
+TODO: with css, mark the currently sorted-by column
+TODO: pagination
+-->
+
 <html lang="en">
 <head>
 	<title>spreadsheet</title>
@@ -9,10 +16,6 @@
 </head>
 
 <body>
-<!--
-TODO: with css, mark the currently sorted-by column
-TODO: pagination
--->
 <div ng-app="coreSpreadsheet">
 	<link href="/app1/scss/ng-spreadsheet" rel="stylesheet" type="text/css"/>
 	<script src="/app1/js/ng-spreadsheet.js"></script>

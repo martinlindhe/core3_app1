@@ -14,8 +14,8 @@ if (isset($_SERVER['REDIRECT_URL'])) {
 
 $router = new \Web\RequestRouter();
 $router->setApplicationDirectoryRoot(__DIR__);
-$router->setApplicationWebRoot('/app1');  // XXX TODO FIXME how should we set this up properly? it is only needed when app is not in root vhost
 
+include 'settings/settings.php';
 
 /**
  * Compiles SCSS to CSS stylesheets on demand
@@ -41,7 +41,7 @@ $router->registerRoute('scss', function($params) // XXX maybe param should be "/
 
         http_response_code(400); // Bad Request
         header('Content-Type: application/json');
-        return \ResponseError::exceptionToJson($ex);
+        return \Api\ResponseError::exceptionToJson($ex);
     }
 });
 
