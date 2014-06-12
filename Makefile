@@ -10,10 +10,10 @@ update-prod-deps update-production-deps:
 	php composer.phar update
 
 test:
-	./vendor/bin/phpunit --stderr --configuration=test/phpunit.xml
+	./vendor/bin/phpunit
 
 lint:
-	./vendor/bin/phpcs --standard=test/phpcs-ruleset.xml app test
+	./vendor/bin/phpcs --standard=test/phpcs-ruleset.xml settings test view
 
 ctags:
 	ctags --languages=PHP --exclude=vendor --exclude=.git --exclude=composer.phar -R -f .tags
