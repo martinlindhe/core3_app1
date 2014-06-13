@@ -1,6 +1,3 @@
-# dont set ETag on static content, Last-Modified is enough
-FileETag None
-
 # dont send X-Pad header (fix for ancient bug in Netscape browser still sent in apache 2.2)
 Header unset X-Pad
 

@@ -12,6 +12,9 @@ update-prod-deps update-production-deps:
 test:
 	./vendor/bin/phpunit
 
+test-js:
+	karma start
+
 lint-php:
 	./vendor/bin/phpcs --standard=test/phpcs-ruleset.xml settings test view
 
