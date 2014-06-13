@@ -4,9 +4,9 @@ FileETag None
 # dont send X-Pad header (fix for ancient bug in Netscape browser still sent in apache 2.2)
 Header unset X-Pad
 
-# dont expose directory listings
-Options +FollowSymLinks -Indexes +MultiViews
-### -MultiViews
+# -Indexes: dont expose directory listings
+# -MultiViews: dont have apache trying to outsmart our request routing
+Options +FollowSymLinks -Indexes -MultiViews
 
 # dont expose .git directory - TODO block access to all dot . files
 RedirectMatch 404 /\.git

@@ -10,4 +10,4 @@ components
 *.compiled.css
 settings.php
 *.min.js
-*.min.map
+*.js.map
