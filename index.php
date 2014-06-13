@@ -15,12 +15,12 @@ if (isset($_SERVER['REDIRECT_URL'])) {
 $router = new \Web\RequestRouter();
 $router->setApplicationDirectoryRoot(__DIR__);
 
-include 'settings/settings.php';
+require 'settings/settings.php';
 
 /**
  * Compiles SCSS to CSS stylesheets on demand
  */
-$router->registerRoute('scss', function($params) // XXX maybe param should be "/app1/scss" for clarity
+$router->registerRoute('scss', function($params) // XXX param should be full path, /scss
 {
     $viewName = $params[0]; ///< base name of the scss file
 

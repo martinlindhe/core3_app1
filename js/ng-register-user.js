@@ -13,7 +13,7 @@ angular.module('registerUserApp', [])
 
 			$http({
 				method: 'POST',
-				url: '/app1/api-core-register',
+				url: '/api-core-register',
 				data: {
 					'username': userData.username,
 					'password': userData.password,
@@ -76,7 +76,7 @@ angular.module('registerUserApp', [])
 						console.log('checking if username "'+viewValue+'" is in use');
 						$http({
 							method: 'POST',
-							url: '/app1/api-core-username-free',
+							url: '/api-core-username-free',
 							data: {'username': viewValue}
 						}).success(function(data,status,headers,cfg) {
 							ctrl.$setValidity('unique', data.isAvailable);

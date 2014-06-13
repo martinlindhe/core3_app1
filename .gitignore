@@ -9,3 +9,5 @@ components
 .tags_sorted_by_file
 *.compiled.css
 settings.php
+*.min.js
+*.min.map

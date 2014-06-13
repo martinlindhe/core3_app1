@@ -26,7 +26,6 @@ clean:
 
 
 jsmin:
-	cd js
-	java -jar ./../vendor/packagist/closurecompiler-bin/bin/compiler.jar --js ng-books.js --js_output_file ng-books.min.js --create_source_map ng-books.min.map
-	java -jar ./../vendor/packagist/closurecompiler-bin/bin/compiler.jar --js ng-spreadsheet.js --js_output_file ng-spreadsheet.min.js --create_source_map ng-spreadsheet.min.map
-	cd ..
+	uglifyjs js/ng-books.js -o js/ng-books.min.js --source-map js/ng-books.min.js.map --prefix relative -c -m
+	uglifyjs js/ng-register-user.js -o js/ng-register-user.min.js --source-map js/ng-register-user.min.js.map --prefix relative -c -m
+	uglifyjs js/ng-spreadsheet.js -o js/ng-spreadsheet.min.js --source-map js/ng-spreadsheet.min.js.map --prefix relative -c -m

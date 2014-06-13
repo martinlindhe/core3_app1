@@ -3,16 +3,16 @@
 <head>
 	<title>app1</title>
 
-	<script src="/app1/js/angularjs/angular.js"></script>
-	<script src="/app1/js/angularjs/angular-route.js"></script>
-	<script src="/app1/js/angularjs/i18n/angular-locale_sv-se.js"></script>
+	<script src="/js/angularjs/angular.js"></script>
+	<script src="/js/angularjs/angular-route.js"></script>
+	<script src="/js/angularjs/i18n/angular-locale_sv-se.js"></script>
 
 </head>
 
 <body>
 <div ng-controller="FormController">
-	<link href="/app1/scss/ng-register-form" rel="stylesheet" type="text/css"/>
-	<script src="/app1/js/ng-register-user.js"></script>
+	<link href="/scss/ng-register-form" rel="stylesheet" type="text/css"/>
+	<script src="/js/ng-register-user.min.js"></script>
 
 	Register new user:<br/>
 
@@ -62,8 +62,8 @@
 ?>
 
 	<hr/>
-	check out <a href="books/Book/Gatsby">books</a><br/>
-	or <a href="spreadsheet">spreadsheet</a><br/>
+	check out <a href="/books/Book/Gatsby">books</a><br/>
+	or <a href="/spreadsheet">spreadsheet</a><br/>
 </div>
 
 
