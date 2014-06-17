@@ -16,7 +16,7 @@ test-js:
 	karma start
 
 lint-php:
-	./vendor/bin/phpcs --standard=test/phpcs-ruleset.xml settings test view
+	./vendor/bin/phpcs --standard=test/phpcs-ruleset.xml settings class test view
 
 lint-html:
 	find partials -name "*.html" -print0 | xargs -0 -t -n 1 tidy -qe
