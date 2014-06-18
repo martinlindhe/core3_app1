@@ -3,8 +3,8 @@
 $doc = new \Writer\DocumentHtml5();
 
 $map = new \JsMap\Google();
-$map->setLatitude(59.742656);
-$map->setLongitude(17.675384);
+$coord = new \JsMap\Coordinate(59.742656, 17.675384);
+$map->setCenter($coord);
 $map->setZoom(14);
 $map->setMapType('HYBRID');
 

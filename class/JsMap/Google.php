@@ -11,7 +11,7 @@ class Google
     protected $region;
     protected $sensor = false;
     protected $zoom = 8;
-    protected $center; ///< Coordinate
+    protected $centerCoordinate;
     protected $latitude = -34.397;
     protected $longitude = 150.644;
     protected $markers = array();
@@ -22,19 +22,14 @@ class Google
     {
         $this->apiKey = $apiKey;
         $this->divId = 'gmap_'.mt_rand();
-        $this->center = new Coordinate();
     }
-    
-    public function setLatitude($n)
+
+    public function setCenter(Coordinate $c)
     {
-        $this->center->latitude = $n;
+        $this->centerCoordinate = $c;
     }
-    
-    public function setLongitude($n)
-    {
-        $this->center->longitude = $n;
-    }
-    /**
+
+    /*
      * @param string $s 2-letter language code, eg "en"
      */
     public function setLanguage($s)
@@ -101,7 +96,7 @@ class Google
     {
         return $b ? 'true' : 'false';
     }
-    
+
     public function setMapType($s)
     {
         $s = strtoupper($s);
@@ -113,6 +108,9 @@ class Google
 
     public function attachToDocument(\Writer\DocumentHtml5 $document)
     {
+        if (!$this->centerCoordinate) {
+            throw new \Exception('requires centerCoordinate');
+        }
         $apiUrl =
             '//maps.googleapis.com/maps/api/js?v=3.16'.
             '&sensor='.$this->boolToString($this->sensor).
@@ -124,11 +122,17 @@ class Google
 
         $document->attachJsOnload(
             'var myOptions={'.
-                'center:new google.maps.LatLng('.$this->center->latitude.','.$this->center->longitude.'),'.
+                'center:new google.maps.LatLng('.
+                    $this->centerCoordinate->latitude.','.
+                    $this->centerCoordinate->longitude.
+                '),'.
                 'zoom:'.$this->zoom.','.
                 'mapTypeId:google.maps.MapTypeId.'.$this->mapType.
             '};'.
-            'var myMap=new google.maps.Map(document.getElementById("'.$this->divId.'"),myOptions);'.
+            'var myMap=new google.maps.Map('.
+                'document.getElementById("'.$this->divId.'"),'.
+                'myOptions'.
+            ');'.
             $this->renderMarkers()
         );
 
