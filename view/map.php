@@ -11,7 +11,7 @@ $map->setMapType('HYBRID');
 $doc->embedCss(
     '#'.$map->getDivId().'{'.
         'width:500px;'.
-        'height:500px;'.
+        'height:300px;'.
         'border:1px solid #000;'.
     '}'
 );
@@ -33,7 +33,7 @@ foreach ($rows as $row) {
     }
 }
 
-$map->renderToDocument($doc);
+$map->attachToDocument($doc);
 
 
 echo $doc->render();

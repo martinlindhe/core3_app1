@@ -18,8 +18,8 @@ angular.module('bookApp', ['ngRoute'])
 	})
 
 	.config(function($routeProvider, $locationProvider) {
-		var urlRoot = '/books';
-		var templateRoot = '/partials/books';
+		var urlRoot = '/app1/books';  /// XXXX TODO how to inject $webRoot
+		var templateRoot = '/app1/partials/books';
 
 		$routeProvider
 		.when(urlRoot + '/Book/:bookId', {

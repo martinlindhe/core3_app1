@@ -111,7 +111,7 @@ class Google
         $this->mapType = $s;
     }
 
-    public function renderToDocument(\Writer\DocumentHtml5 $document)
+    public function attachToDocument(\Writer\DocumentHtml5 $document)
     {
         $apiUrl =
             '//maps.googleapis.com/maps/api/js?v=3.16'.

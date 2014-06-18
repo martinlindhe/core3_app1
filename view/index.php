@@ -2,17 +2,16 @@
 <html lang="en" ng-app="registerUserApp">
 <head>
 	<title>app1</title>
-
-	<script src="/js/angularjs/angular.js"></script>
-	<script src="/js/angularjs/angular-route.js"></script>
-	<script src="/js/angularjs/i18n/angular-locale_sv-se.js"></script>
+	<script src="<?=$webRoot?>/js/angularjs/angular.js"></script>
+	<script src="<?=$webRoot?>/js/angularjs/angular-route.js"></script>
+	<script src="<?=$webRoot?>/js/angularjs/i18n/angular-locale_sv-se.js"></script>
 
 </head>
 
 <body>
 <div ng-controller="FormController">
-	<link href="/scss/ng-register-form" rel="stylesheet" type="text/css"/>
-	<script src="/js/ng-register-user.min.js"></script>
+	<link href="<?=$webRoot?>/scss/ng-register-form" rel="stylesheet" type="text/css"/>
+	<script src="<?=$webRoot?>/js/ng-register-user.js"></script>
 
 	Register new user:<br/>
 
@@ -62,8 +61,9 @@
 ?>
 
 	<hr/>
-	check out <a href="/books/Book/Gatsby">books</a><br/>
-	or <a href="/spreadsheet">spreadsheet</a><br/>
+	check out <a href="<?=$webRoot?>/books/Book/Gatsby">books</a><br/>
+	or <a href="<?=$webRoot?>/spreadsheet">spreadsheet</a><br/>
+    or <a href="<?=$webRoot?>/map">map</a><br/>
 </div>
 
 

@@ -10,15 +10,15 @@ TODO: pagination
 <head>
 	<title>spreadsheet</title>
 
-	<script src="/js/angularjs/angular.js"></script>
-	<script src="/js/angularjs/angular-route.js"></script>
-	<script src="/js/angularjs/i18n/angular-locale_sv-se.js"></script>
+	<script src="<?=$webRoot?>/js/angularjs/angular.js"></script>
+	<script src="<?=$webRoot?>/js/angularjs/angular-route.js"></script>
+	<script src="<?=$webRoot?>/js/angularjs/i18n/angular-locale_sv-se.js"></script>
 </head>
 
 <body>
 <div ng-app="coreSpreadsheet">
-	<link href="/scss/ng-spreadsheet" rel="stylesheet" type="text/css"/>
-	<script src="/js/ng-spreadsheet.min.js"></script>
+	<link href="<?=$webRoot?>/scss/ng-spreadsheet" rel="stylesheet" type="text/css"/>
+	<script src="<?=$webRoot?>/js/ng-spreadsheet.js"></script>
 
 	<div ng-controller="SpreadsheetController">
 		<table class="coreSpreadsheet">
