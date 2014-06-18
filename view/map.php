@@ -8,12 +8,12 @@ $map->setLongitude(17.675384);
 $map->setZoom(14);
 $map->setMapType('HYBRID');
 
-$mapCss =
+$doc->embedCss(
     '#'.$map->getDivId().'{'.
         'width:500px;'.
         'height:500px;'.
-    '}';
-$doc->attachToBody('<style>'.$mapCss.'</style>');
+    '}'
+);
 
 $rawData = file_get_contents('/Users/ml/dev/core3_app1/view/pos.csv');
 
