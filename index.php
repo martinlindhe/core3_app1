@@ -45,8 +45,9 @@ $router->registerRoute('scss', function($params) // XXX param should be full pat
     }
 });
 
+\Writer\HttpHeader::sendContentType('text/html; charset=utf-8');
 
 echo $router->route($request);
 
 
-// TODO: internally handle /api = API calls
+// TODO: route /api

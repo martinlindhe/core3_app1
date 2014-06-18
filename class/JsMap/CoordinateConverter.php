@@ -21,7 +21,7 @@ class CoordinateConverter
      *
      * @return Coordinate
      */
-    public static function SWEREF99_TM_toWGS84($n, $e)
+    public static function SWEREF99TM_to_WGS84($n, $e)
     {
         $p = new CoordinateConvertParameters();
         $p->n = $n;

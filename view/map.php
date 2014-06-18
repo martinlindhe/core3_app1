@@ -1,11 +1,6 @@
 <?php
-/*
-map div:
-    protected $width  = 500;
-    protected $height = 300;
-*/
     
-$doc = new \Writer\DocumentXhtml();
+$doc = new \Writer\DocumentHtml5();
 
 $map = new \JsMap\Google();
 $map->setLatitude(59.742656);
@@ -24,15 +19,14 @@ $rawData = file_get_contents('/Users/ml/dev/core3_app1/view/pos.csv');
 
 $rows = explode("\n", $rawData);
 $rowCount = 0;
+
 foreach ($rows as $row) {
     $rowCount++;
     $cols = explode(',', $row);
 
-    // XXX convert
     if (count($cols) == 2) {
-        $xx = \JsMap\CoordinateConverter::SWEREF99_TM_toWGS84($cols[1], $cols[0]);
-        //var_dump($xx);
-        $mark = new \JsMap\GoogleMapMarker($xx->latitude, $xx->longitude);
+        $coord = \JsMap\CoordinateConverter::SWEREF99TM_to_WGS84($cols[1], $cols[0]);
+        $mark = new \JsMap\GoogleMapMarker($coord->latitude, $coord->longitude);
         $mark->setTooltip($rowCount);
         $map->addMarker($mark);
     }
