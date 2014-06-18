@@ -12,6 +12,7 @@ $doc->embedCss(
     '#'.$map->getDivId().'{'.
         'width:500px;'.
         'height:500px;'.
+        'border:1px solid #000;'.
     '}'
 );
 

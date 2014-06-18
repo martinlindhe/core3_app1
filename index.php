@@ -17,6 +17,9 @@ $router->setApplicationDirectoryRoot(__DIR__);
 
 require 'settings/settings.php';
 
+$router->setApplicationWebRoot(dirname($_SERVER['SCRIPT_NAME']));
+
+
 /**
  * Compiles SCSS to CSS stylesheets on demand
  */
