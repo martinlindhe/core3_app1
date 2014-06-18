@@ -7,7 +7,7 @@ angular.module('coreSpreadsheet', [])
 		$scope.sortKey = $scope.headerOrder[0];
 		$scope.sortReverse = false;
 
-		$http({method: 'GET', url: '/app1/api-spreadsheet/123'}). // TODO inject $webRoot
+		$http({method: 'GET', url: 'api-spreadsheet/123'}).
 			success(function(data, status, headers, config) {
 				$scope.result = data;
 			}).

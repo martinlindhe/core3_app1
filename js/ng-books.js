@@ -18,19 +18,15 @@ angular.module('bookApp', ['ngRoute'])
 	})
 
 	.config(function($routeProvider, $locationProvider) {
-		var urlRoot = '/app1/books';  /// XXXX TODO how to inject $webRoot
-		var templateRoot = '/app1/partials/books';
+		$locationProvider.html5Mode(true);
 
 		$routeProvider
-		.when(urlRoot + '/Book/:bookId', {
-			templateUrl: templateRoot + '/book.html',
+		.when('/books/Book/:bookId', {
+			templateUrl: 'partials/books/book.html',
 			controller: 'BookController'
 		})
-		.when(urlRoot + '/Book/:bookId/ch/:chapterId', {
-			templateUrl: templateRoot + '/chapter.html',
+		.when('/books/Book/:bookId/ch/:chapterId', {
+			templateUrl:'partials/books/chapter.html',
 			controller: 'ChapterController'
 		});
-
-		// configure html5 to get links working on jsfiddle
-		$locationProvider.html5Mode(true);
 	});
