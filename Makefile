@@ -19,10 +19,13 @@ lint-php:
 	./vendor/bin/phpcs --standard=test/phpcs-ruleset.xml settings class test view
 
 lint-html:
-	find partials -name "*.html" -print0 | xargs -0 -t -n 1 tidy -qe
+	gulp htmlhint
+
+lint-js:
+	gulp jshint
 
 clean:
-	rm -rf coverage-report-html
+	gulp clean
 
 jsmin:
 	uglifyjs js/ng-books.js -o js/ng-books.min.js --source-map js/ng-books.min.js.map --prefix relative --lint
