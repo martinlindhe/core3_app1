@@ -30,7 +30,7 @@ TODO: pagination
 				<td>{{r.id}}</td>
 				<td>{{r.name}}</td>
 				<td>{{r.decimalNumber | currency:"sek"}}</td>
-				<td>{{r.datestamp | date:'medium' | json}} is a {{r.datestamp | date:'EEEE' | json}}</td>
+				<td>{{r.datestamp | date:'medium' }} is a {{r.datestamp | date:'EEEE'}}</td>
 			</tr>
 		</table>
 	</div>
