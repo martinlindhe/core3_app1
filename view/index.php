@@ -15,18 +15,35 @@
 	<script src="js/ng-register-user.js"></script>
 
 	Register new user:<br/>
-
+<!-- ng-pattern="[a-zA-Z0-9]" -->
 	<form name="signupForm" class="register-form" novalidate ng-submit="addUser(newUser)">
-		<input type="text"  name="userName" ng-model="newUser.username" required ng-minlength=3 ng-maxlength=8 placeholder="Your username"/>
-		<input type="password" name="userPass" ng-model="newUser.password" required ng-minlength=6 placeholder="Password"/>
-		<input type="email" name="userEmail" ng-model="newUser.email" required placeholder="Email Address"/>
-
-		<input type="checkbox" ng-model="newUser.agree" required/>
+		<input type="text"
+               name="username"
+               username-free="username"
+               ng-model="newUser.username"
+               required
+               ng-minlength=3
+               ng-maxlength=8
+               placeholder="Your username"/>
+		<input type="password"
+               name="password"
+               ng-model="newUser.password"
+               required
+               ng-minlength=6
+               placeholder="Password"/>
+		<input type="email"
+               name="email"
+               ng-model="newUser.email"
+               required
+               placeholder="Email Address"/>
+		<input type="checkbox"
+               ng-model="newUser.agree"
+               required/>
 		I agree
 
 		<button type="submit" ng-disabled="signupForm.$invalid">REGISTER</button>
 
-		typed name is {{ newUser.username }}
+        form data {{ newUser }}
 	</form>
 
 	<div ng-show="!newUser.agree">Please agree.</div>
