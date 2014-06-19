@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-	<base href="<?=$webRoot;?>/"/>
+	<base href="<?=$webRoot;?>"/>
 	<title>books</title>
 
 	<script src="js/angularjs/angular.js"></script>

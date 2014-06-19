@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en" ng-app="registerUserApp">
 <head>
-	<base href="<?=$webRoot;?>/"/>
+	<base href="<?=$webRoot;?>"/>
 	<title>app1</title>
 	<script src="js/angularjs/angular.js"></script>
 	<script src="js/angularjs/angular-route.js"></script>

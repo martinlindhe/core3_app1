@@ -8,7 +8,7 @@ TODO: pagination
 
 <html lang="en">
 <head>
-	<base href="<?=$webRoot;?>/"/>
+	<base href="<?=$webRoot;?>"/>
 	<title>spreadsheet</title>
 
 	<script src="js/angularjs/angular.js"></script>
