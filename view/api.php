@@ -19,12 +19,13 @@ if ($param[0] == 'core-register-user') {
 
     echo json_encode($res);
 } else if ($param[0] == 'core-username-free') {
-    // TODO db lookup of name
     $isAvailable = true;
 
     // parses input variables from ng POST
     $input = json_decode(file_get_contents('php://input'));
-    if ($input && $input->username == "hej") {
+    
+    // TODO db lookup of name
+    if ($input && in_array($input->username, array('hej','hejsan'))) {
         $isAvailable = false;
     }
 

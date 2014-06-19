@@ -9,10 +9,6 @@ angular.module('registerUserApp', [])
         $scope.addUser = function(userData) {
             console.log("trying to register " + userData.username);
 
-            // TODO call api with register attempt
-
-            // XXX fails to access form properties
-
             $http({
                 method: 'POST',
                 url: 'api/core-register-user',
@@ -22,7 +18,7 @@ angular.module('registerUserApp', [])
                     'email': userData.email
                 }
             }).success(function(data,status,headers,cfg) {
-                ctrl.$setValidity('unique', data.isAvailable);
+                console.log("FAKED register success!");
                 // TODO STORE session auth token & change state to logged in
 
             }).error(function(data, status, headers, config) {
@@ -38,28 +34,27 @@ angular.module('registerUserApp', [])
             require: 'ngModel',
             link: function(scope, elm, attrs, ctrl) {
                 scope.$watch(attrs.ngModel, function() {
-                    console.log("minlen " + attrs.ngMinlength);
+                    console.log("usernameFree directive triggered");
 
-                    // add a parser that will process each time the value is 
-                    // parsed into the model when the user updates it.
-                    ctrl.$parsers.unshift(function(value) {
-                        // FIXME delayed checking is broken
-                        // FIXME also validitiy is broken (dont get valid even when result is true)
+                    var val = elm.val();
+                    if (!val) {
+                        return;
+                    }
+                    
+                    if (checking != null) {
+                        $timeout.cancel(checking);
+                    }
 
-                       // if (!checking) {
-                            console.log('checking if username "'+value+'" is in use');
-
-                      //      checking = $timeout(function() {
-                                $http({
-                                    method: 'POST',
-                                    url: 'api/core-username-free/'+value,
-                                    data: {'username': value}
-                                }).success(function(data, status, headers, cfg) {
-                                    ctrl.$setValidity('unique', data.isAvailable);
-                                });
-                        //    }, 500);
-                        //}
-                    });
+                    checking = $timeout(function() {
+                        console.log('checking if username "'+val+'" is in use');
+                        $http({
+                            method: 'POST',
+                            url: 'api/core-username-free/',
+                            data: {'username': val}
+                        }).success(function(data, status, headers, cfg) {
+                            ctrl.$setValidity('unique', data.isAvailable);
+                        });
+                    }, 200);
                 });
             }
         }

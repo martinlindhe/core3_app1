@@ -6,7 +6,6 @@
 	<script src="js/angularjs/angular.js"></script>
 	<script src="js/angularjs/angular-route.js"></script>
 	<script src="js/angularjs/i18n/angular-locale_sv-se.js"></script>
-
 </head>
 
 <body>
@@ -23,7 +22,7 @@
                ng-model="newUser.username"
                required
                ng-minlength=3
-               ng-maxlength=8
+               ng-maxlength=20
                placeholder="Your username"/>
 		<input type="password"
                name="password"
@@ -49,19 +48,19 @@
 	<div ng-show="!newUser.agree">Please agree.</div>
 
 	<div class="errors">
-		<div ng-show="signupForm.userName.$dirty && signupForm.userName.$invalid">USER:
-			<span ng-show="signupForm.userName.$error.required">Username required.</span>
-			<span ng-show="signupForm.userName.$error.minlength">Username is too short.</span>
-			<span ng-show="signupForm.userName.$error.maxlength">Username is too long.</span>
-			<span ng-show="signupForm.userName.$error.unique">Username is taken.</span>
+		<div ng-show="signupForm.username.$dirty && signupForm.username.$invalid">USER:
+			<span ng-show="signupForm.username.$error.required">Username required.</span>
+			<span ng-show="signupForm.username.$error.minlength">Username is too short.</span>
+			<span ng-show="signupForm.username.$error.maxlength">Username is too long.</span>
+			<span ng-show="signupForm.username.$error.unique">Username is taken.</span>
 		</div>
 
-		<div ng-show="signupForm.userEmail.$dirty && signupForm.userEmail.$invalid">EMAIL:
-			<span ng-show="signupForm.userEmail.$error.email">This is not a valid email.</span>
+		<div ng-show="signupForm.email.$dirty && signupForm.email.$invalid">EMAIL:
+			<span ng-show="signupForm.email.$error.email">This is not a valid email.</span>
 		</div>
 
-		<div ng-show="signupForm.userPass.$dirty && signupForm.userPass.$invalid">PWD:
-			<span ng-show="signupForm.userPass.$error.minlength">Password must be at least 6 letters.</span>
+		<div ng-show="signupForm.password.$dirty && signupForm.password.$invalid">PWD:
+			<span ng-show="signupForm.password.$error.minlength">Password must be at least 6 letters.</span>
 		</div>
 	</div>
 </div>
