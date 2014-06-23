@@ -16,21 +16,14 @@ $doc->embedCss(
     '}'
 );
 
-$rawData = file_get_contents('/Users/ml/dev/core3_app1/view/pos.csv');
-
-$rows = explode("\n", $rawData);
-$rowCount = 0;
+$csvReader = new \Reader\Csv();
+$rows = $csvReader->parseFile('/Users/ml/dev/core3_app1/view/pos3.csv');
 
 foreach ($rows as $row) {
-    $rowCount++;
-    $cols = explode(',', $row);
-
-    if (count($cols) == 2) {
-        $coord = \JsMap\CoordinateConverter::SWEREF99TM_to_WGS84($cols[1], $cols[0]);
-        $mark = new \JsMap\GoogleMapMarker($coord->latitude, $coord->longitude);
-        $mark->setTooltip($rowCount);
-        $map->addMarker($mark);
-    }
+    $coord = \JsMap\CoordinateConverter::SWEREF99TM_to_WGS84($row[2], $row[1]);
+    $mark = new \JsMap\GoogleMapMarker($coord->latitude, $coord->longitude);
+    $mark->setTooltip($row[0]);
+   	$map->addMarker($mark);
 }
 
 $map->attachToDocument($doc);
