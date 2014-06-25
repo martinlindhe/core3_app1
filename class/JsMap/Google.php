@@ -1,6 +1,11 @@
 <?php
 namespace JsMap;
 
+class GeoJsonReference
+{
+    var $url;
+}
+
 /**
  * Google Maps Javascript widget
  */
@@ -17,7 +22,7 @@ class Google
     protected $mapType = 'ROADMAP';
     protected $divId;
     protected $markers = array();
-    protected $kmlLayers = array();
+    protected $geoJsonReferences  = array();
 
     public function __construct($apiKey = null)
     {
@@ -77,9 +82,11 @@ class Google
         return $this->divId;
     }
 
-    public function addKmlLayer($url)
+    public function loadGeoJson($url)
     {
-        $this->kmlLayers[] = $url;
+        $x = new GeoJsonReference();
+        $x->url = $url;
+        $this->geoJsonReferences[] = $x;
     }
     
     public function addMarker(GoogleMapMarker $mark)
@@ -118,29 +125,31 @@ class Google
             throw new \Exception('requires centerCoordinate');
         }
         $apiUrl =
-            '//maps.googleapis.com/maps/api/js?v=3.16'.
+            '//maps.googleapis.com/maps/api/js?v=3.16'.  // v=3.16, v=exp
             '&sensor='.$this->boolToString($this->sensor).
             ($this->apiKey ? '&key='.$this->apiKey : '').
-            ($this->language   ? '&language='.$this->language : '').
+            ($this->language ? '&language='.$this->language : '').
             ($this->region ? '&region='.$this->region : '');
 
         $document->includeJs($apiUrl);
 
-        $document->attachJsOnload(
-            'var myOptions={'.
-                'center:new google.maps.LatLng('.
-                    $this->centerCoordinate->latitude.','.
-                    $this->centerCoordinate->longitude.
-                '),'.
-                'zoom:'.$this->zoom.','.
-                'mapTypeId:google.maps.MapTypeId.'.$this->mapType.
-            '};'.
-            'var myMap=new google.maps.Map('.
-                'document.getElementById("'.$this->divId.'"),'.
-                'myOptions'.
-            ');'.
-            $this->renderKmlLayers('myMap').
-            $this->renderMarkers('myMap')
+        $document->embedJs(
+            'google.maps.event.addDomListener(window, "load", function(){'.
+                'var opt={'.
+                    'center:new google.maps.LatLng('.
+                        $this->centerCoordinate->latitude.','.
+                        $this->centerCoordinate->longitude.
+                    '),'.
+                    'zoom:'.$this->zoom.','.
+                    'mapTypeId:google.maps.MapTypeId.'.$this->mapType.
+                '};'.
+                'var map=new google.maps.Map('.
+                    'document.getElementById("'.$this->divId.'"),'.
+                    'opt'.
+                ');'.
+                $this->renderLoadGeoJson().
+                $this->renderMarkers().
+            '});'
         );
 
         $document->attachToBody(
@@ -151,34 +160,28 @@ class Google
     /**
      * requires a public url because it is included from google servers
      */
-    private function renderKmlLayers($mapVar)
+    private function renderLoadGeoJson()
     {
         $res = '';
-        $i = 0;
-
-        foreach ($this->kmlLayers as $url) {
-            $var = 'layer'.(++$i);
+        foreach ($this->geoJsonReferences as $ref) {
             $res .=
-            'var '.$var.' = new google.maps.KmlLayer({'.
-                'url: "'.$url.'"'.
-            '});'.
-            $var.'.setMap('.$mapVar.');';
+            'map.data.loadGeoJson("'.$ref->url.'");';
         }
         return $res;
     }
     
-    private function renderMarkers($mapVar)
+    private function renderMarkers()
     {
         $res = '';
         foreach ($this->markers as $idx => $m) {
             $res .=
-            'var mk'.$idx.'=new google.maps.Marker({'.
+            'var k'.$idx.'=new google.maps.Marker({'.
                 'position:new google.maps.LatLng('.$m->latitude.','.$m->longitude.'),'.
-                ($m->getIcon() ? 'icon:"'.$m->getIcon().'",' : '').
+                ($m->getIcon() ? 'icon:'.$m->getIcon().',' : '').
                 ($m->getTooltip() ? 'title:"'.$m->getTooltip().'",' : '').
                 ($m->getZIndex() ? 'zIndex:'.$m->getZIndex().',' : '').
                 ($m->isFlat() ? 'flat:true,' : '').
-                'map:'.$mapVar.
+                'map:map'.
             '});';
         }
         return $res;

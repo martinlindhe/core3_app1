@@ -20,6 +20,11 @@ class GoogleMapMarker
     {
         $this->tooltip = $s;
     }
+
+    public function setIcon($s)
+    {
+        $this->icon = $s;
+    }
     
     public function getTooltip()
     {
