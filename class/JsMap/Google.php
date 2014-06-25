@@ -14,9 +14,10 @@ class Google
     protected $centerCoordinate;
     protected $latitude = -34.397;
     protected $longitude = 150.644;
-    protected $markers = array();
     protected $mapType = 'ROADMAP';
     protected $divId;
+    protected $markers = array();
+    protected $kmlLayers = array();
 
     public function __construct($apiKey = null)
     {
@@ -74,6 +75,11 @@ class Google
     public function getDivId()
     {
         return $this->divId;
+    }
+
+    public function addKmlLayer($url)
+    {
+        $this->kmlLayers[] = $url;
     }
     
     public function addMarker(GoogleMapMarker $mark)
@@ -133,15 +139,35 @@ class Google
                 'document.getElementById("'.$this->divId.'"),'.
                 'myOptions'.
             ');'.
-            $this->renderMarkers()
+            $this->renderKmlLayers('myMap').
+            $this->renderMarkers('myMap')
         );
 
         $document->attachToBody(
             '<div id="'.$this->divId.'"></div>'
         );
     }
+
+    /**
+     * requires a public url because it is included from google servers
+     */
+    private function renderKmlLayers($mapVar)
+    {
+        $res = '';
+        $i = 0;
+
+        foreach ($this->kmlLayers as $url) {
+            $var = 'layer'.(++$i);
+            $res .=
+            'var '.$var.' = new google.maps.KmlLayer({'.
+                'url: "'.$url.'"'.
+            '});'.
+            $var.'.setMap('.$mapVar.');';
+        }
+        return $res;
+    }
     
-    private function renderMarkers()
+    private function renderMarkers($mapVar)
     {
         $res = '';
         foreach ($this->markers as $idx => $m) {
@@ -152,7 +178,7 @@ class Google
                 ($m->getTooltip() ? 'title:"'.$m->getTooltip().'",' : '').
                 ($m->getZIndex() ? 'zIndex:'.$m->getZIndex().',' : '').
                 ($m->isFlat() ? 'flat:true,' : '').
-                'map:myMap'.
+                'map:'.$mapVar.
             '});';
         }
         return $res;

@@ -8,6 +8,10 @@ $map->setCenter($coord);
 $map->setZoom(14);
 $map->setMapType('HYBRID');
 
+//$map->addKmlLayer('http://app1.dev/app1/kml'); // XXX dont work because google maps include file from servers,need public url
+
+//$map->addKmlLayer('http://api.flickr.com/services/feeds/geo/?g=322338@N20&lang=en-us&format=feed-georss');
+
 $doc->embedCss(
     '#'.$map->getDivId().'{'.
         'width:500px;'.
