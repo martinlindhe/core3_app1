@@ -6,6 +6,7 @@ class GoogleMapMarker
     var $latitude;
     var $longitude;
     protected $tooltip;
+    protected $infoWindow;
     protected $icon;
     protected $zIndex;
     protected $flat = false;
@@ -21,6 +22,11 @@ class GoogleMapMarker
         $this->tooltip = $s;
     }
 
+    public function setInfoWindow($s)
+    {
+        $this->infoWindow = $s;
+    }
+
     public function setIcon($s)
     {
         $this->icon = $s;
@@ -31,6 +37,11 @@ class GoogleMapMarker
         return $this->tooltip;
     }
     
+    public function getInfoWindow()
+    {
+        return $this->infoWindow;
+    }
+
     public function getIcon()
     {
         return $this->icon;

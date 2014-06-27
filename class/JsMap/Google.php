@@ -172,7 +172,7 @@ class Google
     
     private function renderMarkers()
     {
-        $res = '';
+        $res = 'var infoWindow = new google.maps.InfoWindow();';
         foreach ($this->markers as $idx => $m) {
             $res .=
             'var k'.$idx.'=new google.maps.Marker({'.
@@ -182,7 +182,16 @@ class Google
                 ($m->getZIndex() ? 'zIndex:'.$m->getZIndex().',' : '').
                 ($m->isFlat() ? 'flat:true,' : '').
                 'map:map'.
-            '});';
+            '});'.
+            ($m->getInfoWindow() ?
+            'google.maps.event.addListener(k'.$idx.',"mouseover",(function(marker)'.
+            '{'.
+                'return function()'.
+                '{'.
+                    'infoWindow.setContent("'.$m->getInfoWindow().'");'.
+                    'infoWindow.open(map,marker);'.
+                '}'.
+            '})(k'.$idx.'));' : '');
         }
         return $res;
     }
