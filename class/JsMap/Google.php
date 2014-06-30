@@ -1,6 +1,9 @@
 <?php
 namespace JsMap;
 
+// TODO rewrite: insert js array with markers, and a js loop that creates them, rather than a php loop
+// see example: http://stackoverflow.com/questions/3059044/google-maps-js-api-v3-simple-multiple-marker-example
+
 class GeoJsonReference
 {
     var $url;
@@ -135,17 +138,16 @@ class Google
 
         $document->embedJs(
             'google.maps.event.addDomListener(window, "load", function(){'.
-                'var opt={'.
-                    'center:new google.maps.LatLng('.
-                        $this->centerCoordinate->latitude.','.
-                        $this->centerCoordinate->longitude.
-                    '),'.
-                    'zoom:'.$this->zoom.','.
-                    'mapTypeId:google.maps.MapTypeId.'.$this->mapType.
-                '};'.
                 'var map=new google.maps.Map('.
                     'document.getElementById("'.$this->divId.'"),'.
-                    'opt'.
+                    '{'.
+                        'center:new google.maps.LatLng('.
+                            $this->centerCoordinate->latitude.','.
+                            $this->centerCoordinate->longitude.
+                        '),'.
+                        'zoom:'.$this->zoom.','.
+                        'mapTypeId:google.maps.MapTypeId.'.$this->mapType.
+                    '}'.
                 ');'.
                 $this->renderLoadGeoJson().
                 $this->renderMarkers().
@@ -187,7 +189,7 @@ class Google
             'google.maps.event.addListener(k'.$idx.',"mouseover",function()'.
             '{'.
                 'infoWindow.setContent("'.$m->getInfoWindow().'");'.
-                'infoWindow.open(map,k'.$idx.');'.
+                'infoWindow.open(map,this);'.
             '});' : '');
         }
         return $res;

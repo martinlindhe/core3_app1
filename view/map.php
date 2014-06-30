@@ -20,6 +20,7 @@ $doc->embedCss(
         //'color:#eeaa11;'.
         'font-size:9px;'.
         'line-height:9px;'.
+        'white-space: pre;'.
     '}'
 );
 
@@ -62,7 +63,8 @@ foreach ($rows as $row) {
         continue;
     }
     $infoStr = \Helper\Object::describePropertiesWithValues($row, array('coordE', 'coordN'));
-    $infoStr = str_replace("\n", '<br/>', trim($infoStr));
+    $infoStr = htmlentities(trim($infoStr));
+    $infoStr = str_replace("\n", '&#10;', $infoStr);
     $info = '<div class=\"mapInfoWnd\">'.$infoStr.'</div>';
     $mark->setInfoWindow($info);
     switch ($row->vegetationType) {
