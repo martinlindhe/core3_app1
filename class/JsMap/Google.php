@@ -184,12 +184,12 @@ class Google
                 'map:map'.
             '});'.
             ($m->getInfoWindow() ?
-            'google.maps.event.addListener(k'.$idx.',"mouseover",(function(marker)'.
+            'google.maps.event.addListener(k'.$idx.',"mouseover",(function()'.
             '{'.
                 'return function()'.
                 '{'.
                     'infoWindow.setContent("'.$m->getInfoWindow().'");'.
-                    'infoWindow.open(map,marker);'.
+                    'infoWindow.open(map,k'.$idx.');'.
                 '}'.
             '})(k'.$idx.'));' : '');
         }
