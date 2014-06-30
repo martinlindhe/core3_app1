@@ -100,9 +100,9 @@ foreach ($rows as $row) {
     }
     $mark->setIcon(
         '{'.
-            'path: '.$symbol.','.
-            'scale: 2,'.
-            'strokeColor: "'.$color.'"'.
+            'path:'.$symbol.','.
+            'scale:2,'.
+            'strokeColor:"'.$color.'"'.
         '}'
     );
     $map->addMarker($mark);

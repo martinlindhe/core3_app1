@@ -184,14 +184,11 @@ class Google
                 'map:map'.
             '});'.
             ($m->getInfoWindow() ?
-            'google.maps.event.addListener(k'.$idx.',"mouseover",(function()'.
+            'google.maps.event.addListener(k'.$idx.',"mouseover",function()'.
             '{'.
-                'return function()'.
-                '{'.
-                    'infoWindow.setContent("'.$m->getInfoWindow().'");'.
-                    'infoWindow.open(map,k'.$idx.');'.
-                '}'.
-            '})(k'.$idx.'));' : '');
+                'infoWindow.setContent("'.$m->getInfoWindow().'");'.
+                'infoWindow.open(map,k'.$idx.');'.
+            '});' : '');
         }
         return $res;
     }
