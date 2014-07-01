@@ -11,16 +11,22 @@ $map->loadGeoJson('geojson/hagen');
 //$map->loadGeoJson('geojson/stangsel');
 
 $doc->embedCss(
+    'html,body{'.
+        'height:100%;'.
+        'margin:0;'.
+        'padding:0;'.
+    '}'.
     '#'.$map->getDivId().'{'.
-        'width:1000px;'.
-        'height:600px;'.
+        //'width:1000px;'.
+        //'height:600px;'.
+        'width:100%;'.
+        'height:100%;'.
         'border:1px solid #000;'.
     '}'.
     '.mapInfoWnd{'.
         //'color:#eeaa11;'.
         'font-size:9px;'.
         'line-height:9px;'.
-        'white-space: pre;'.
     '}'
 );
 
@@ -63,8 +69,7 @@ foreach ($rows as $row) {
         continue;
     }
     $infoStr = \Helper\Object::describePropertiesWithValues($row, array('coordE', 'coordN'));
-    $infoStr = htmlentities(trim($infoStr));
-    $infoStr = str_replace("\n", '&#10;', $infoStr);
+    $infoStr = str_replace("\n", '<br/>', trim($infoStr));
     $info = '<div class=\"mapInfoWnd\">'.$infoStr.'</div>';
     $mark->setInfoWindow($info);
     switch ($row->vegetationType) {
@@ -102,9 +107,9 @@ foreach ($rows as $row) {
     }
     $mark->setIcon(
         '{'.
-            'path:'.$symbol.','.
-            'scale:2,'.
-            'strokeColor:"'.$color.'"'.
+            'path: '.$symbol.','.
+            'scale: 2,'.
+            'strokeColor: "'.$color.'"'.
         '}'
     );
     $map->addMarker($mark);

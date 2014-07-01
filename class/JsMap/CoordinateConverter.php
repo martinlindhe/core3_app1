@@ -23,6 +23,7 @@ class CoordinateConverter
      */
     public static function SWEREF99TM_to_WGS84($n, $e)
     {
+        // FIXME what is the range of this coord system?
         if ($n > 9999999 || $e > 99999999 ||
             $n < 1000 || $e < 1000) {
             throw new \Exception('invalid coords');
