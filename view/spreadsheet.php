@@ -3,7 +3,7 @@
 <!--
 TODO: fill a rectangular area of the spreadsheet with svg/spin.svg and "loading" text
 TODO: with css, mark the currently sorted-by column
-TODO: pagination
+TODO: pagination, request eg 10 items/load using json api
 -->
 
 <html lang="en">
