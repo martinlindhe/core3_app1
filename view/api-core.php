@@ -1,4 +1,5 @@
 <?php
+// TODO auto register into request router api handler when project uses user functionality, how?
 header('Content-Type: application/json');
 
 if ($param[0] == 'core-register-user') {
