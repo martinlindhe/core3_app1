@@ -1,7 +1,13 @@
 {
+	"repositories": [
+		{
+			"type": "vcs",
+			"url": "https://github.com/martinlindhe/angular.js"
+		}
+	],
 	"require": {
 		"php": ">=5.3.0",
-		"components/angular.js": "1.2.16",
+		"components/angular.js": "1.2.19",
 		"angular-ui/bootstrap": "dev-master"
 	},
 	"require-dev": {
