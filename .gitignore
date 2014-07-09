@@ -5,8 +5,7 @@ composer.lock
 coverage-report-html
 components
 *.sublime-workspace
-.tags
-.tags_sorted_by_file
+tags
 scss/compiled
 js/compiled
 settings.php

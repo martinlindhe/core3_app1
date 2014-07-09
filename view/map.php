@@ -10,7 +10,9 @@ $map->setMapType('HYBRID');
 $map->loadGeoJson('geojson/hagen');
 //$map->loadGeoJson('geojson/stangsel');
 
-\ReaderCsvHagenPos::addMarkersToMap($map, __DIR__.'/pos4.csv');
+//\ReaderCsvHagenPos::addMarkersToMap($map, __DIR__.'/pos4.csv');
+
+\ReaderHorseData::addMarkersToMap($map, __DIR__.'/4664.csv');
 
 
 $doc->embedCss(
