@@ -12,7 +12,7 @@ $map->loadGeoJson('geojson/hagen');
 
 //\ReaderCsvHagenPos::addMarkersToMap($map, __DIR__.'/pos4.csv');
 
-\ReaderHorseData::addMarkersToMap($map, __DIR__.'/4664.csv');
+\ReaderHorseData::addMarkersToMap($map, __DIR__.'/4664.csv', $param[0]);
 
 
 $doc->embedCss(
