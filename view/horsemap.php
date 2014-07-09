@@ -5,7 +5,9 @@ $doc = new \Writer\DocumentHtml5();
 //$map = new \JsMap\Google(); // XXX to pure js file
 //$map->setCenter(new \JsMap\Coordinate(59.742656, 17.675384));
 //$map->setZoom(15);
-$map->setMapType('HYBRID');
+//$map->setMapType('HYBRID');
+
+
 
 $map->loadGeoJson('geojson/hagen');
 //$map->loadGeoJson('geojson/stangsel');
@@ -41,9 +43,13 @@ $map->attachToDocument($doc);
 echo $doc->render();
 */
 
+
+
+// TODO: show red horses markers in red, blue in blue!
+
 ?>
 <!DOCTYPE html>
-<html ng-app="appMaps">
+<html ng-app="horseMap">
 
 <head>
     <base href="<?=$webRoot;?>"/>
@@ -57,22 +63,22 @@ echo $doc->render();
     <div id="map_canvas" ng-controller="GoogleMapController">
         <div
             google-map
+            draggable="true"
             center="map.center"
             zoom="map.zoom"
             options="map.options"
         >
-            <markers models="randomMarkers" coords="'self'" icon="'icon'" click="'onClick'">
-                <!--
-                    <windows show="'show'">
-                        <div ng-non-bindable>{{title}}</div>
-                    </windows>
-                -->
+            <markers models="horseRedMarkers" coords="'self'" icon="'icon'" click="'onClick'">
             </markers>
+
+            <markers models="horseBlueMarkers" coords="'self'" icon="'icon'" click="'onClick'">
+            </markers>
+
         </div>
         <script src="js/angular-google-maps/angular-google-maps.js"></script>
-        <script src="js/controller/googlemap.js" type="text/javascript"></script>
+        <script src="js/controller/horsemap.js" type="text/javascript"></script>
 
-        <link href="scss/googlemap" rel="stylesheet" type="text/css"/>
+        <link href="scss/horsemap" rel="stylesheet" type="text/css"/>
 
     </div>
 

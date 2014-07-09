@@ -45,7 +45,7 @@ class Google
     {
         $this->language = $s;
     }
-    
+
     /**
      * @param string $s in order to force regional settings, eg "US", "SE"
      */
@@ -79,7 +79,7 @@ class Google
     {
         $this->height = $n;
     }
-    
+
     public function getDivId()
     {
         return $this->divId;
@@ -91,7 +91,7 @@ class Google
         $x->url = $url;
         $this->geoJsonReferences[] = $x;
     }
-    
+
     public function addMarker(GoogleMapMarker $mark)
     {
         $this->markers[] = $mark;
@@ -171,7 +171,7 @@ class Google
         }
         return $res;
     }
-    
+
     private function renderMarkers()
     {
         $res = 'var infoWindow = new google.maps.InfoWindow();';

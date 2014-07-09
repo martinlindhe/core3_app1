@@ -1,10 +1,26 @@
 <?php
 
-// FIXME should be $param[0]; currently 0 holds "coord-horse" ie view name
-$displayDate = $param[1]; // TODO FIXME core3: since this is routed from core3 view/api.php, params are not re-initialized properly
+if (!is_numeric($param[1])) {
+    throw new \Exception('bad input');
+}
+$fileName = __DIR__.'/'.$param[1].'.csv';  // FIXME should be 0
+if (!file_exists($fileName)) {
+    throw new \Exception('not found '.$fileName);
+}
 
+// FIXME should be $param[1]; currently  holds "coord-horse" ie view name
+$displayDate = $param[2]; // TODO FIXME core3: since this is routed from core3 view/api.php, params are not re-initialized properly
+if ($displayDate && !is_numeric($displayDate)) {
+    throw new \Exception('bad input');
+}
 
-// TODO: cache this output to disk, parsing of 400k csv is expensive
-$markers = \ReaderHorseData::parseIntoMarkers(__DIR__.'/4664.csv', $displayDate);
+$cacheFileName = __DIR__.'/horse-cache/'.basename($fileName).$displayDate;
+if (file_exists($cacheFileName)) {
+    echo file_get_contents($cacheFileName);
+} else {
+    $markers = \ReaderHorseData::parseIntoMarkers($fileName, $displayDate);
 
-echo \Writer\Json::encode($markers);
+    $data = \Writer\Json::encode($markers);
+    file_put_contents($cacheFileName, $data);
+    echo $data;
+}

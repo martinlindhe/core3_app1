@@ -10,8 +10,5 @@ angular.module('coreSpreadsheet', [])
         $http({method: 'GET', url: 'api/spreadsheet/123'}).
             success(function(data, status, headers, config) {
                 $scope.result = data;
-            }).
-            error(function(data, status, headers, config) {
-                // TODO raise UI error that communication failed
             });
     });

@@ -24,6 +24,20 @@ class CsvHorseData
     var $gsm;
 }
 
+class MapMarker
+{
+    var $id;
+    var $latitude;
+    var $longitude;
+    var $timestamp;
+
+    public function __construct($lat, $long)
+    {
+        $this->latitude = $lat;
+        $this->longitude = $long;
+    }
+}
+
 class ReaderHorseData
 {
     /**
@@ -40,28 +54,30 @@ class ReaderHorseData
         $filterTs = strtotime($filterDate);
         $res = array();
 
+        $id = 0;
         foreach ($rows as $row) {
+            $id++;
             if ($row->ttf == '') {
                 // these rows dont have coords
                 continue;
             }
             try {
-                $coord = new \JsMap\Coordinate($row->lat, $row->long);
-                $mark = new \JsMap\GoogleMapMarker($coord->latitude, $coord->longitude);
+                $mark = new MapMarker($row->lat, $row->long);
+                $mark->id = $id;
             } catch (\Exception $e) {
                 continue;
             }
 
             $date = str_replace(' ', '-', $row->date);
-            $ts = strtotime($date.' '.$row->time);
+            $mark->timestamp = strtotime($date.' '.$row->time);
 
             $dateTs = strtotime($date);
             if ($filterDate && $dateTs != $filterTs) {
                 continue;
             }
 
-            $info = date('r', $ts);
-            $mark->setTooltip($info);
+            //$info = date('r', $mark->timestamp);
+            //$mark->tooltip($info);
             $res[] = $mark;
         }
 
