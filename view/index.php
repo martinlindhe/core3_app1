@@ -80,7 +80,7 @@
 	<hr/>
 	check out <a href="books/Book/Gatsby">books</a><br/>
 	or <a href="spreadsheet">spreadsheet</a><br/>
-    or <a href="map">map</a><br/>
+    or <a href="googlemap">map</a><br/>
 </div>
 
 

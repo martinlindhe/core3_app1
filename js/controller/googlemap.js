@@ -1,23 +1,15 @@
-// TODO wrap in angular directive, embed gmap in angular -map config params as angular html
-/*
-var map;
-function initialize() {
-    var mapOptions = {
-        zoom: 8,
-        center: new google.maps.LatLng(-34.397, 150.644)
-    };
-    map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
-}
-
-google.maps.event.addDomListener(window, 'load', initialize);
-
-*/
 'use strict';
 
 angular.module('appMaps', ['google-maps'])
-    .controller('mainCtrl', function($scope) {
-        $scope.map = {center: {latitude: 40.1451, longitude: -99.6680 }, zoom: 4, bounds: {}};
-        $scope.options = {scrollwheel: false};
+    .controller('GoogleMapController', function($scope) {
+
+        $scope.map = {
+            center: {latitude: 59.742656, longitude: 17.675384 },
+            zoom: 15,
+            options: {mapTypeId: google.maps.MapTypeId.HYBRID }
+        };
+
+/*
         var createRandomMarker = function (i, bounds, idKey) {
             var lat_min = bounds.southwest.latitude,
                 lat_range = bounds.northeast.latitude - lat_min,
@@ -44,6 +36,7 @@ angular.module('appMaps', ['google-maps'])
             ret[idKey] = i;
             return ret;
         };
+
         $scope.randomMarkers = [];
         // Get the bounds from the map once it's loaded
         $scope.$watch(function() { return $scope.map.bounds; }, function(nv, ov) {
@@ -56,4 +49,5 @@ angular.module('appMaps', ['google-maps'])
                 $scope.randomMarkers = markers;
             }
         }, true);
+        */
     });
