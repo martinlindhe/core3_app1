@@ -6,7 +6,6 @@
 
 	<script src="js/angularjs/angular.js"></script>
 	<script src="js/angularjs/angular-route.js"></script>
-	<script src="js/angularjs/i18n/angular-locale_sv-se.js"></script>
 </head>
 
 <body>
@@ -14,7 +13,6 @@
 <div ng-app="bookApp">
 
 	<div ng-controller="MainController">
-		<script src="js/ng-books.js"></script>
 
 		<input ng-model="person.name" type="text" placeholder="Your name">
 		<h1>Hello {{ person.name }}</h1>
@@ -34,6 +32,8 @@
 		<pre>$route.current.params = {{$route.current.params}}</pre>
 		<pre>$route.current.scope.name = {{$route.current.scope.name}}</pre>
 		<pre>$routeParams = {{$routeParams}}</pre>
+
+		<script src="js/controller/books.js"></script>
 	</div>
 </div>
 

@@ -30,14 +30,15 @@ class ReaderHorseData
      * @param $filterDate string YYYYMMDD if set, only include measures from this date
      * @return array of map markers
      */
-    public static function addMarkersToMap(\JsMap\Google $map, $csvFileName, $filterDate = '')
+    public static function parseIntoMarkers($csvFileName, $filterDate = '')
     {
         $csvReader = new \Reader\Csv();
         $csvReader->setStartLine(2);
-        $csvReader->setDelimiter("\t"); // FIXME unit test tab delim
+        $csvReader->setDelimiter("\t");
         $rows = $csvReader->parseFileToObjects($csvFileName, new CsvHorseData());
 
         $filterTs = strtotime($filterDate);
+        $res = array();
 
         foreach ($rows as $row) {
             if ($row->ttf == '') {
@@ -61,7 +62,9 @@ class ReaderHorseData
 
             $info = date('r', $ts);
             $mark->setTooltip($info);
-            $map->addMarker($mark);
+            $res[] = $mark;
         }
+
+        return $res;
     }
 }

@@ -5,13 +5,10 @@
 	<title>app1</title>
 	<script src="js/angularjs/angular.js"></script>
 	<script src="js/angularjs/angular-route.js"></script>
-	<script src="js/angularjs/i18n/angular-locale_sv-se.js"></script>
 </head>
 
 <body>
 <div ng-controller="FormController">
-	<link href="scss/ng-register-form" rel="stylesheet" type="text/css"/>
-	<script src="js/ng-register-user.js"></script>
 
 	Register new user:<br/>
 <!-- ng-pattern="[a-zA-Z0-9]" -->
@@ -63,6 +60,9 @@
 			<span ng-show="signupForm.password.$error.minlength">Password must be at least 6 letters.</span>
 		</div>
 	</div>
+
+	<link href="scss/register-form" rel="stylesheet" type="text/css"/>
+	<script src="js/controller/register-user.js"></script>
 </div>
 
 

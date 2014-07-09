@@ -17,8 +17,6 @@
 
 <body>
 <div ng-app="coreSpreadsheet">
-	<link href="scss/ng-spreadsheet" rel="stylesheet" type="text/css"/>
-	<script src="js/ng-spreadsheet.js"></script>
 
 	<div ng-controller="SpreadsheetController">
 		<table class="coreSpreadsheet">
@@ -32,7 +30,11 @@
 				<td>{{r.datestamp | date:'medium' }} is a {{r.datestamp | date:'EEEE'}}</td>
 			</tr>
 		</table>
+
+		<link href="scss/spreadsheet" rel="stylesheet" type="text/css"/>
+		<script src="js/controller/spreadsheet.js"></script>
 	</div>
+
 </div>
 
 </body>
