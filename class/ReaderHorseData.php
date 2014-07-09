@@ -45,8 +45,12 @@ class ReaderHorseData
             } catch (\Exception $e) {
                 continue;
             }
-            $info = $row->date.', '.$row->time;
-            //$mark->setTooltip($info);
+
+            $date = str_replace(' ', '-', $row->date);
+            $ts = strtotime($date.' '.$row->time);
+
+            $info = date('r', $ts);
+            $mark->setTooltip($info);
             $map->addMarker($mark);
         }
     }
