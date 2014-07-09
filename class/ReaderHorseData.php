@@ -26,10 +26,10 @@ class CsvHorseData
 
 class MapMarker
 {
-    var $id;
+    //var $id;
     var $latitude;
     var $longitude;
-    var $timestamp;
+    //var $timestamp;
 
     public function __construct($lat, $long)
     {
@@ -63,13 +63,13 @@ class ReaderHorseData
             }
             try {
                 $mark = new MapMarker($row->lat, $row->long);
-                $mark->id = $id;
+                //$mark->id = $id;
             } catch (\Exception $e) {
                 continue;
             }
 
             $date = str_replace(' ', '-', $row->date);
-            $mark->timestamp = strtotime($date.' '.$row->time);
+            //$mark->timestamp = strtotime($date.' '.$row->time);
 
             $dateTs = strtotime($date);
             if ($filterDate && $dateTs != $filterTs) {

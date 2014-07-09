@@ -45,8 +45,7 @@ echo $doc->render();
 
 
 
-// TODO: show red horses markers in red, blue in blue!
-
+// TODO show each line in polyline in different colors
 ?>
 <!DOCTYPE html>
 <html ng-app="horseMap">
@@ -54,25 +53,40 @@ echo $doc->render();
 <head>
     <base href="<?=$webRoot;?>"/>
     <script src="js/angularjs/angular.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?libraries=weather,geometry,visualization&sensor=false&language=en&v=3.14"></script>
+    <!-- TODO gmaps libraries=weather,geometry,visualization -->
+    <script src="https://maps.googleapis.com/maps/api/js?sensor=false&language=en&v=3.16"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.underscore.js"></script>
 </head>
 
 <body>
     <div id="map_canvas" ng-controller="GoogleMapController">
+
         <div
             google-map
             draggable="true"
             center="map.center"
             zoom="map.zoom"
             options="map.options"
+            events="map.events"
         >
-            <markers models="horseRedMarkers" coords="'self'" icon="'icon'" click="'onClick'">
-            </markers>
+            <polyline
+                ng-if="horseRedMarkers.length > 1"
+                path="horseRedMarkers"
+                coords="'self'"
+                stroke="{ color: '#d04f4f', weight: 3}"
+                static="true" />
 
-            <markers models="horseBlueMarkers" coords="'self'" icon="'icon'" click="'onClick'">
-            </markers>
+            <!-- FIXME due to bug, if array is initally empty view never get populated,
+                 we work around with ng-if,
+                 https://github.com/nlaplante/angular-google-maps/issues/522
+             -->
+            <polyline
+                ng-if="horseBlueMarkers.length > 1"
+                path="horseBlueMarkers"
+                stroke="{ color: '#5139af', weight: 3}"
+                static="true" />
+
 
         </div>
         <script src="js/angular-google-maps/angular-google-maps.js"></script>
