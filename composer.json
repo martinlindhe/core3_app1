@@ -8,7 +8,7 @@
 	"require": {
 		"php": ">=5.3.0",
 		"components/angular.js": "1.2.19",
-		"angular-ui/bootstrap": "dev-master"
+		"components/bootstrap": "3.2.0"
 	},
 	"require-dev": {
 		"packagist/closurecompiler-bin": "dev-master",
