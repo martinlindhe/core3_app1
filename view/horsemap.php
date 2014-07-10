@@ -56,6 +56,12 @@
                 path="horseBlueMarkers"
                 stroke="{ color: '#5139af', weight: 3}"
                 />
+
+            <markers
+                ng-if="showGroundMarkers"
+                models="horseGroundMarkers"
+                coords="'self'"
+                />
         </div>
     </div>
 
@@ -86,7 +92,10 @@
         <button class="btn btn-info" ng-click="pager.setPeriod(24*14)">14 days</button>
         <button class="btn btn-info" ng-click="pager.setPeriod(24*30)">30 days</button>
 
-
+        <label>
+            <input type="checkbox" ng-model="showGroundMarkers" />
+            Show ground markers
+        </label>
 
     </div>
 
