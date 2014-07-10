@@ -13,6 +13,16 @@ Date.prototype.yyyymmdd = function() {
 angular.module('horseMap', ['google-maps'])
     .controller('GoogleMapController', function($scope, $http, $log) {
 
+
+        $scope.pager = {
+            totalItems: 64,
+            currentPage: 4,
+            maxSize: 5,
+            setPage: function (pageNo) {
+                $scope.pager.currentPage = pageNo;
+            }
+        }
+
         $scope.map = {
             center: { latitude: 59.7445, longitude: 17.675 },
             zoom: 15,

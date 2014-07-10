@@ -6,19 +6,21 @@
 // TODO show each line in polyline in different colors
 ?>
 <!DOCTYPE html>
-<html ng-app="horseMap">
+<html ng-app="horseMap" lang="en">
 
 <head>
     <base href="<?=$webRoot;?>"/>
 
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
 
     <script src="js/angularjs/angular.js"></script>
+    <script src="js/angular-ui-bootstrap/ui-bootstrap-tpls.js"></script>
 
 </head>
 
-<body>
-    <div id="map_canvas" ng-controller="GoogleMapController">
+<body ng-controller="GoogleMapController">
+    <div class="container-fluid" id="map_canvas">
 
         <div
             google-map
@@ -46,17 +48,6 @@
                 static="true" />
         </div>
 
-        <div>
-            <p>time {{ unixTime * 1000 | date:fullDate }}</p>
-
-            <p>
-                <!-- TODO slider med unix timestamp date1, increment 24h, rendera med ng filter -->
-                 <!-- <input slider ng-model="unixTime" type="text" options="{ from: 1, to: 100, step: 1 }" /> -->
-
-            </p>
-
-        </div>
-
         <!-- TODO gmaps libraries=weather,geometry,visualization -->
         <script src="https://maps.googleapis.com/maps/api/js?sensor=false&language=en&v=3.16"></script>
 
@@ -65,6 +56,22 @@
         <script src="js/controller/horsemap.js" type="text/javascript"></script>
 
         <link href="scss/horsemap" rel="stylesheet" type="text/css"/>
+
+    </div>
+
+
+    <div class="container">
+        <p>time {{ unixTime * 1000 | date:fullDate }}</p>
+
+            <!-- TODO slider med unix timestamp date1, increment 24h, rendera med ng filter -->
+             <!-- <input slider ng-model="unixTime" type="text" options="{ from: 1, to: 100, step: 1 }" /> -->
+        <p>
+            <pre>The selected page no: {{pager.currentPage}}</pre>
+            <pager total-items="pager.totalItems" ng-model="pager.currentPage"></pager>
+
+            <button class="btn btn-info" ng-click="pager.setPage(3)">Set current page to: 3</button>
+        </p>
+
 
     </div>
 

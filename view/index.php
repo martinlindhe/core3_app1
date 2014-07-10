@@ -4,13 +4,16 @@
 	<base href="<?=$webRoot;?>"/>
 	<title>app1</title>
 
+	<meta name="viewport" content="width=device-width, initial-scale=1"/>
 	<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
 	<script src="js/angularjs/angular.js"></script>
 	<script src="js/angular-ui-bootstrap/ui-bootstrap-tpls.js"></script>
 </head>
 
 <body>
-<div ng-controller="FormController">
+
+
+<div class="container" ng-controller="FormController">
 
 	Register new user:<br/>
 <!-- ng-pattern="[a-zA-Z0-9]" -->
