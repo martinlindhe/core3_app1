@@ -23,9 +23,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
 
-    <script async src="js/angularjs/angular.js"></script>
-    <script async src="js/angularjs/i18n/angular-locale_sv-se.js"></script>
-    <script async src="js/angular-ui-bootstrap/ui-bootstrap-tpls.js"></script>
+    <script src="js/angularjs/angular.js"></script>
+    <script src="js/angularjs/i18n/angular-locale_sv-se.js"></script>
+    <script src="js/angular-ui-bootstrap/ui-bootstrap-tpls.js"></script>
 
     <!--
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular.js"></script>

@@ -12,11 +12,13 @@ angular.module('horseMap', ['google-maps'])
 
                 $scope.pager.unixCurrentTime = $scope.unixStartTime + (pageNo * $scope.pager.increaseSeconds);
 
+                // 4664-äskil
                 $http({method: 'GET', url: 'api/coord-horses/4664-' + $scope.pager.unixCurrentTime + '-' + $scope.pager.increaseSeconds}).
                     success(function(data, status, headers, config) {
                         $scope.horseRedMarkers = data;
                     });
 
+                // 4665-messer
                 $http({method: 'GET', url: 'api/coord-horses/4665-' + $scope.pager.unixCurrentTime + '-' + $scope.pager.increaseSeconds}).
                     success(function(data, status, headers, config) {
                         $scope.horseBlueMarkers = data;
