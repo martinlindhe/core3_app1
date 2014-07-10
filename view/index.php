@@ -10,15 +10,17 @@
 	<script src="js/angular-ui-bootstrap/ui-bootstrap-tpls.js"></script>
 </head>
 
-<body>
+<body ng-controller="FormController">
 
 
-<div class="container" ng-controller="FormController">
+<div class="container">
 
 	Register new user:<br/>
 <!-- ng-pattern="[a-zA-Z0-9]" -->
-	<form name="signupForm" class="register-form" novalidate ng-submit="addUser(newUser)">
+	<form name="signupForm" class="form-inline register-form" novalidate ng-submit="addUser(newUser)">
+
 		<input type="text"
+			   class="form-control"
                name="username"
                username-free="username"
                ng-model="newUser.username"
@@ -27,22 +29,32 @@
                ng-maxlength=20
                placeholder="Your username"/>
 		<input type="password"
+			   class="form-control"
                name="password"
                ng-model="newUser.password"
                required
                ng-minlength=6
                placeholder="Password"/>
-		<input type="email"
+
+		<div class="input-group">
+      		<div class="input-group-addon">@</div>
+			<input type="email"
+		       class="form-control"
                name="email"
                ng-model="newUser.email"
                required
                placeholder="Email Address"/>
-		<input type="checkbox"
+		</div>
+		<div class="checkbox">
+			<label>
+			<input type="checkbox"
                ng-model="newUser.agree"
                required/>
-		I agree
+			I agree
+			</label>
+		</div>
 
-		<button type="submit" ng-disabled="signupForm.$invalid">REGISTER</button>
+		<button type="submit" class="btn btn-primary" ng-disabled="signupForm.$invalid">REGISTER</button>
 
         form data {{ newUser }}
 	</form>
@@ -68,13 +80,13 @@
 
 	<link href="scss/register-form" rel="stylesheet" type="text/css"/>
 	<script src="js/controller/register-user.js"></script>
+</div>
 
-
-
-    <h4>Pager</h4>
+<div class="container">
 	<pre>The selected page no: {{pager.currentPage}}</pre>
     <pager total-items="pager.totalItems" ng-model="pager.currentPage"></pager>
-
+	<div pagination total-items="pager.totalItems" ng-model="pager.currentPage"></div>
+	<br/>
 	<button class="btn btn-info" ng-click="pager.setPage(3)">Set current page to: 3</button>
 
 
