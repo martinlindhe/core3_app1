@@ -1,7 +1,5 @@
 <?php
 
-// TODO slider
-
 // TODO add json view for \ReaderCsvHagenPos::addMarkersToMap($map, __DIR__.'/pos4.csv');
 // TODO show each line in polyline in different colors
 
@@ -45,8 +43,8 @@
             center="map.center"
             zoom="map.zoom"
             options="map.options"
-            events="map.events"
-        >
+            events="map.events" >
+
             <polyline
                 ng-if="horseRedMarkers.length > 1"
                 path="horseRedMarkers"
@@ -83,6 +81,10 @@
         <button class="btn btn-info" ng-click="pager.setPeriod(4)">4 hour</button>
         <button class="btn btn-info" ng-click="pager.setPeriod(8)">8 hour</button>
         <button class="btn btn-info" ng-click="pager.setPeriod(24)">24 hour</button>
+
+        <button class="btn btn-info" ng-click="pager.setPeriod(24*7)">7 days</button>
+        <button class="btn btn-info" ng-click="pager.setPeriod(24*14)">14 days</button>
+        <button class="btn btn-info" ng-click="pager.setPeriod(24*30)">30 days</button>
 
     </div>
 

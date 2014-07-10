@@ -1,5 +1,21 @@
 'use strict';
 
+Date.prototype.horseDateTime = function() {
+    var yyyy = this.getFullYear().toString();
+    var mm = (this.getMonth()+1).toString(); // getMonth() is zero-based
+    var dd = this.getDate().toString();
+    var hour = this.getHours().toString();
+    var min = this.getMinutes().toString();
+
+    return yyyy +
+        (mm[1] ? mm : "0" + mm[0]) +
+        (dd[1] ? dd : "0" + dd[0]) +
+        (hour[1] ? hour : "0" + hour[0]) +
+        (min[1] ? min : "0" + min[0]) +
+        '00';
+};
+
+
 angular.module('horseMap', ['google-maps'])
     .controller('GoogleMapController', function($scope, $http, $log) {
 
@@ -12,14 +28,16 @@ angular.module('horseMap', ['google-maps'])
 
                 $scope.pager.unixCurrentTime = $scope.unixStartTime + (pageNo * $scope.pager.increaseSeconds);
 
+                var date = new Date($scope.pager.unixCurrentTime * 1000);
+
                 // 4664-äskil
-                $http({method: 'GET', url: 'api/coord-horses/4664-' + $scope.pager.unixCurrentTime + '-' + $scope.pager.increaseSeconds}).
+                $http({method: 'GET', url: 'api/coord-horses/4664-' + date.horseDateTime() + '-' + $scope.pager.increaseSeconds}).
                     success(function(data, status, headers, config) {
                         $scope.horseRedMarkers = data;
                     });
 
                 // 4665-messer
-                $http({method: 'GET', url: 'api/coord-horses/4665-' + $scope.pager.unixCurrentTime + '-' + $scope.pager.increaseSeconds}).
+                $http({method: 'GET', url: 'api/coord-horses/4665-' + date.horseDateTime() + '-' + $scope.pager.increaseSeconds}).
                     success(function(data, status, headers, config) {
                         $scope.horseBlueMarkers = data;
                     });
@@ -56,7 +74,6 @@ angular.module('horseMap', ['google-maps'])
         // https://github.com/nlaplante/angular-google-maps/issues/522
 
 
-        /// TODO Start date 20140521, end 20140701
 
 /*
         $http({method: 'GET', url: 'geojson/hagen'}).

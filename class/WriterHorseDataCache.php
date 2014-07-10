@@ -14,7 +14,7 @@ class WriterHorseDataCache
             mkdir($dirName);
         }
 
-        $cacheFileName = $dirName.'/'.$horseId.'-'.$startTime.'-'.$durationSeconds;
+        $cacheFileName = self::getCacheFileName($horseId, $startTime, $durationSeconds);
         if ($force || !file_exists($cacheFileName)) {
             $markers = \ReaderHorseData::parseIntoMarkers($horseId, $startTime, $durationSeconds);
 
@@ -24,5 +24,11 @@ class WriterHorseDataCache
         }
 
         return false;
+    }
+
+    public static function getCacheFileName($horseId, $startTime, $durationSeconds)
+    {
+        $dirName = realpath(__DIR__.'/../horse-data/cache');
+        return $dirName.'/'.$horseId.'-'.date('YmdHis', $startTime).'-'.$durationSeconds;
     }
 }
