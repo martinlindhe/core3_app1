@@ -1,9 +1,15 @@
 {
+	"repositories": [
+		{
+			"type": "vcs",
+			"url": "https://github.com/martinlindhe/bootstrap"
+		}
+	],
 	"require": {
 		"php": ">=5.3.0",
 		"components/angular.js": "1.2.19",
 		"components/bootstrap": "3.2.0",
-		"angular-ui/bootstrap": "dev-master"
+		"angular-ui/bootstrap": "0.11.0"
 	},
 	"require-dev": {
 		"packagist/closurecompiler-bin": "dev-master",

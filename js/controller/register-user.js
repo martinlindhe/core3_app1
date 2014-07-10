@@ -1,8 +1,18 @@
 'use strict';
 
 // registerFormSubmit
-angular.module('registerUserApp', [])
+angular.module('registerUserApp', ['ui.bootstrap'])
     .controller('FormController', function($scope, $http) {
+
+        $scope.pager = {
+            totalItems: 64,
+            currentPage: 4,
+            maxSize: 5,
+            setPage: function (pageNo) {
+                $scope.pager.currentPage = pageNo;
+            }
+        }
+
 
         $scope.newUser = {};
 
@@ -40,7 +50,7 @@ angular.module('registerUserApp', [])
                     if (!val) {
                         return;
                     }
-                    
+
                     if (checking != null) {
                         $timeout.cancel(checking);
                     }

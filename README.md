@@ -36,3 +36,7 @@ change
 Create a symlink for angular.js to be accessable in the web root:
 
   ln -s /Users/ml/dev/core3_app1/vendor/components/angular.js/ js/angular.js
+
+Symlink for angular-ui/bootstrap:
+
+  ln -s /Users/ml/dev/core3_app1/vendor/angular-ui/bootstrap js/angular-ui-bootstrap

@@ -3,8 +3,10 @@
 <head>
 	<base href="<?=$webRoot;?>"/>
 	<title>app1</title>
+
+	<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
 	<script src="js/angularjs/angular.js"></script>
-	<script src="js/angularjs/angular-route.js"></script>
+	<script src="js/angular-ui-bootstrap/ui-bootstrap-tpls.js"></script>
 </head>
 
 <body>
@@ -63,11 +65,17 @@
 
 	<link href="scss/register-form" rel="stylesheet" type="text/css"/>
 	<script src="js/controller/register-user.js"></script>
-</div>
 
 
-<div>
-	hello world<br/>
+
+    <h4>Pager</h4>
+	<pre>The selected page no: {{pager.currentPage}}</pre>
+    <pager total-items="pager.totalItems" ng-model="pager.currentPage"></pager>
+
+	<button class="btn btn-info" ng-click="pager.setPage(3)">Set current page to: 3</button>
+
+
+
 	<br/>
 
 <?php
