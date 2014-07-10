@@ -1,50 +1,8 @@
 <?php
-/*
-$doc = new \Writer\DocumentHtml5();
 
-//$map = new \JsMap\Google(); // XXX to pure js file
-//$map->setCenter(new \JsMap\Coordinate(59.742656, 17.675384));
-//$map->setZoom(15);
-//$map->setMapType('HYBRID');
+// TODO slider
 
-
-
-$map->loadGeoJson('geojson/hagen');
-//$map->loadGeoJson('geojson/stangsel');
-
-//\ReaderCsvHagenPos::addMarkersToMap($map, __DIR__.'/pos4.csv');
-
-\ReaderHorseData::addMarkersToMap($map, __DIR__.'/4664.csv', $param[0]);
-
-
-$doc->embedCss(
-    'html,body{'.
-        'height:100%;'.
-        'margin:0;'.
-        'padding:0;'.
-    '}'.
-    '#'.$map->getDivId().'{'.
-        //'width:1000px;'.
-        //'height:600px;'.
-        'width:100%;'.
-        'height:100%;'.
-        'border:1px solid #000;'.
-    '}'.
-    '.mapInfoWnd{'.
-        //'color:#eeaa11;'.
-        'font-size:9px;'.
-        'line-height:9px;'.
-    '}'
-);
-
-$map->attachToDocument($doc);
-
-
-echo $doc->render();
-*/
-
-
-
+// TODO add json view for \ReaderCsvHagenPos::addMarkersToMap($map, __DIR__.'/pos4.csv');
 // TODO show each line in polyline in different colors
 ?>
 <!DOCTYPE html>
@@ -52,11 +10,11 @@ echo $doc->render();
 
 <head>
     <base href="<?=$webRoot;?>"/>
-    <script src="js/angularjs/angular.js"></script>
-    <!-- TODO gmaps libraries=weather,geometry,visualization -->
-    <script src="https://maps.googleapis.com/maps/api/js?sensor=false&language=en&v=3.16"></script>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.underscore.js"></script>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+
+    <script src="js/angularjs/angular.min.js"></script>
+
 </head>
 
 <body>
@@ -86,9 +44,23 @@ echo $doc->render();
                 path="horseBlueMarkers"
                 stroke="{ color: '#5139af', weight: 3}"
                 static="true" />
+        </div>
 
+        <div>
+            <p>time {{ unixTime * 1000 | date:fullDate }}</p>
+
+            <p>
+                <!-- TODO slider med unix timestamp date1, increment 24h, rendera med ng filter -->
+                 <!-- <input slider ng-model="unixTime" type="text" options="{ from: 1, to: 100, step: 1 }" /> -->
+
+            </p>
 
         </div>
+
+        <!-- TODO gmaps libraries=weather,geometry,visualization -->
+        <script src="https://maps.googleapis.com/maps/api/js?sensor=false&language=en&v=3.16"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.underscore.js"></script>
         <script src="js/angular-google-maps/angular-google-maps.js"></script>
         <script src="js/controller/horsemap.js" type="text/javascript"></script>
 
