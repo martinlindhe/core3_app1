@@ -15,7 +15,7 @@
 
 ?>
 <!DOCTYPE html>
-<html ng-app="horseMap" lang="en">
+<html lang="en" ng-app="horseMap">
 
 <head>
     <base href="<?=$webRoot;?>"/>
@@ -26,14 +26,20 @@
     <script src="js/angularjs/angular.js"></script>
     <script src="js/angular-ui-bootstrap/ui-bootstrap-tpls.js"></script>
 
+    <!--
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.11.0/ui-bootstrap-tpls.js"></script>
+    -->
+
 </head>
 
 <body ng-controller="GoogleMapController">
-<!--
+
     <div class="container-fluid" id="map_canvas">
 
         <div
             google-map
+            refresh="true"
             draggable="true"
             center="map.center"
             zoom="map.zoom"
@@ -43,38 +49,41 @@
             <polyline
                 ng-if="horseRedMarkers.length > 1"
                 path="horseRedMarkers"
-                coords="'self'"
                 stroke="{ color: '#d04f4f', weight: 3}"
-                static="true" />
+                />
 
             <polyline
                 ng-if="horseBlueMarkers.length > 1"
                 path="horseBlueMarkers"
                 stroke="{ color: '#5139af', weight: 3}"
-                static="true" />
+                />
         </div>
     </div>
--->
 
     <div class="container">
-        <p>time {{ unixTime * 1000 | date:fullDate }}</p>
 
-        <pre>The selected page no: {{pager.currentPage}}</pre>
-    <!-- XXX pager visas inte på horsemap-sidan VAAA-->
+        <pre>{{ unixCurrentTime * 1000 | date:fullDate }}, page {{pager.currentPage}}</pre>
         <br/>
         <pager total-items="pager.totalItems" ng-model="pager.currentPage"></pager>
         <br/>
 
         <div pagination total-items="pager.totalItems" ng-model="pager.currentPage"></div>
         <br/>
-        <button class="btn btn-info" ng-click="pager.setPage(3)">Set current page to: 3</button>
+
+
+        <button class="btn btn-info" ng-click="pager.setPage(0)">Oldest date</button>
+<!-- these because pagination dont show up due to ??? NO IDEA! -->
+        <button class="btn btn-info" ng-click="pager.setPage(pager.currentPage-1)">dec</button>
+        <button class="btn btn-info" ng-click="pager.setPage(pager.currentPage+1)">inc</button>
     </div>
 
     <!-- TODO gmaps libraries=weather,geometry,visualization -->
+
     <script src="https://maps.googleapis.com/maps/api/js?sensor=false&language=en&v=3.16"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.underscore.js"></script>
     <script src="js/angular-google-maps/angular-google-maps.js"></script>
+
     <script src="js/controller/horsemap.js" type="text/javascript"></script>
 
     <link href="scss/horsemap" rel="stylesheet" type="text/css"/>

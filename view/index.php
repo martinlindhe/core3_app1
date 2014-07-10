@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en" ng-app="registerUserApp">
 <head>
 	<base href="<?=$webRoot;?>"/>

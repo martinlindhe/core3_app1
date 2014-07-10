@@ -13,13 +13,24 @@ Date.prototype.yyyymmdd = function() {
 angular.module('horseMap', ['google-maps'])
     .controller('GoogleMapController', function($scope, $http, $log) {
 
-
         $scope.pager = {
             totalItems: 64,
-            currentPage: 4,
-            maxSize: 5,
+            currentPage: 0,
             setPage: function (pageNo) {
                 $scope.pager.currentPage = pageNo;
+                $scope.unixCurrentTime = $scope.unixStartTime + (pageNo * 86400); // +1 day
+
+                var date = new Date($scope.unixCurrentTime * 1000);
+
+                $http({method: 'GET', url: 'api/coord-horses/4664/' + date.yyyymmdd()}).
+                    success(function(data, status, headers, config) {
+                        $scope.horseRedMarkers = data;
+                    });
+/*
+                $http({method: 'GET', url: 'api/coord-horses/4665/' + date.yyyymmdd()}).
+                    success(function(data, status, headers, config) {
+                        $scope.horseBlueMarkers = data;
+                    });*/
             }
         }
 
@@ -41,8 +52,13 @@ angular.module('horseMap', ['google-maps'])
             }
         };
 
-        $scope.unixTime = 1400623200; // 2014-05-21 00:00:00;
-        var date = new Date($scope.unixTime * 1000);
+        $scope.unixStartTime = 1400623200; // 2014-05-21 00:00:00;
+        $scope.unixCurrentTime = $scope.unixStartTime;
+
+        $scope.pager.setPage(0); // XXX INITIAL load
+
+        // https://github.com/nlaplante/angular-google-maps/issues/522
+
 
         /// TODO Start date 20140521, end 20140701
 
@@ -57,14 +73,6 @@ angular.module('horseMap', ['google-maps'])
                 $log.info(data.features);
             });
 */
-        $http({method: 'GET', url: 'api/coord-horses/4664/' + date.yyyymmdd()}).
-            success(function(data, status, headers, config) {
-                $scope.horseRedMarkers = data;
-            });
 
-        $http({method: 'GET', url: 'api/coord-horses/4665/' + date.yyyymmdd()}).
-            success(function(data, status, headers, config) {
-                $scope.horseBlueMarkers = data;
-            });
 
     });

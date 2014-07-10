@@ -4,7 +4,7 @@
 //TODO: with css, mark the currently sorted-by column
 //TODO: pagination, request eg 10 items/load using json api
 ?>
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 	<base href="<?=$webRoot;?>"/>
