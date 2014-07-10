@@ -41,17 +41,17 @@ class MapMarker
 class ReaderHorseData
 {
     /**
-     * @param $filterDate string YYYYMMDD if set, only include measures from this date
+     * @param $filterTs timestamp to start at
+     * @param $filterDuration in seconds
      * @return array of map markers
      */
-    public static function parseIntoMarkers($csvFileName, $filterDate = '')
+    public static function parseIntoMarkers($csvFileName, $filterTs, $filterDuration)
     {
         $csvReader = new \Reader\Csv();
         $csvReader->setStartLine(2);
         $csvReader->setDelimiter("\t");
         $rows = $csvReader->parseFileToObjects($csvFileName, new CsvHorseData());
 
-        $filterTs = strtotime($filterDate);
         $res = array();
 
         $id = 0;
@@ -71,8 +71,13 @@ class ReaderHorseData
             $date = str_replace(' ', '-', $row->date);
             $mark->timestamp = strtotime($date.' '.$row->time);
 
-            $dateTs = strtotime($date);
-            if ($filterDate && $dateTs != $filterTs) {
+            if ($mark->timestamp < $filterTs) {
+                // too old
+                continue;
+            }
+
+            if ($mark->timestamp > ($filterTs + $filterDuration)) {
+                // too new
                 continue;
             }
 

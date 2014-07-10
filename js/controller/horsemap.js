@@ -1,36 +1,30 @@
 'use strict';
 
-Date.prototype.yyyymmdd = function() {
-    var yyyy = this.getFullYear().toString();
-    var mm = (this.getMonth()+1).toString(); // getMonth() is zero-based
-    var dd = this.getDate().toString();
-
-    return yyyy +
-        (mm[1] ? mm : "0" + mm[0]) +
-        (dd[1] ? dd : "0" + dd[0]); // padding
-};
-
 angular.module('horseMap', ['google-maps'])
     .controller('GoogleMapController', function($scope, $http, $log) {
 
         $scope.pager = {
             totalItems: 64,
             currentPage: 0,
+            increaseSeconds: 60 * 60 * 1, // 1h
             setPage: function (pageNo) {
                 $scope.pager.currentPage = pageNo;
-                $scope.unixCurrentTime = $scope.unixStartTime + (pageNo * 86400); // +1 day
 
-                var date = new Date($scope.unixCurrentTime * 1000);
+                $scope.pager.unixCurrentTime = $scope.unixStartTime + (pageNo * $scope.pager.increaseSeconds);
 
-                $http({method: 'GET', url: 'api/coord-horses/4664/' + date.yyyymmdd()}).
+                $http({method: 'GET', url: 'api/coord-horses/4664-' + $scope.pager.unixCurrentTime + '-' + $scope.pager.increaseSeconds}).
                     success(function(data, status, headers, config) {
                         $scope.horseRedMarkers = data;
                     });
-/*
-                $http({method: 'GET', url: 'api/coord-horses/4665/' + date.yyyymmdd()}).
+
+                $http({method: 'GET', url: 'api/coord-horses/4665-' + $scope.pager.unixCurrentTime + '-' + $scope.pager.increaseSeconds}).
                     success(function(data, status, headers, config) {
                         $scope.horseBlueMarkers = data;
-                    });*/
+                    });
+            },
+            setPeriod: function (hours) {
+                $scope.pager.increaseSeconds = hours * 60 * 60;
+                $scope.pager.setPage($scope.pager.currentPage); // XXX force reload
             }
         }
 
@@ -52,7 +46,7 @@ angular.module('horseMap', ['google-maps'])
             }
         };
 
-        $scope.unixStartTime = 1400623200; // 2014-05-21 00:00:00;
+        $scope.unixStartTime = 1400709600; // 2014-05-22 00:00:00;
         $scope.unixCurrentTime = $scope.unixStartTime;
 
         $scope.pager.setPage(0); // XXX INITIAL load

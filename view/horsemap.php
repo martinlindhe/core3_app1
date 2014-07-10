@@ -24,6 +24,7 @@
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
 
     <script src="js/angularjs/angular.js"></script>
+    <script src="js/angularjs/i18n/angular-locale_sv-se.js"></script>
     <script src="js/angular-ui-bootstrap/ui-bootstrap-tpls.js"></script>
 
     <!--
@@ -62,19 +63,27 @@
 
     <div class="container">
 
-        <pre>{{ unixCurrentTime * 1000 | date:fullDate }}, page {{pager.currentPage}}</pre>
-        <br/>
+        <pre>{{ pager.unixCurrentTime * 1000 | date:'medium' }} to {{ (pager.unixCurrentTime + pager.increaseSeconds) * 1000 | date:'medium' }}</pre>
+        <pre>{{ pager.increaseSeconds / 3600 }} hours</pre>
+        <!--
         <pager total-items="pager.totalItems" ng-model="pager.currentPage"></pager>
         <br/>
 
         <div pagination total-items="pager.totalItems" ng-model="pager.currentPage"></div>
         <br/>
+        -->
 
-
-        <button class="btn btn-info" ng-click="pager.setPage(0)">Oldest date</button>
+        <button class="btn btn-info" ng-click="pager.setPeriod(1); pager.setPage(-24)">21 maj</button>
 <!-- these because pagination dont show up due to ??? NO IDEA! -->
         <button class="btn btn-info" ng-click="pager.setPage(pager.currentPage-1)">dec</button>
         <button class="btn btn-info" ng-click="pager.setPage(pager.currentPage+1)">inc</button>
+        <br/>
+
+        <button class="btn btn-info" ng-click="pager.setPeriod(1)">1 hour</button>
+        <button class="btn btn-info" ng-click="pager.setPeriod(4)">4 hour</button>
+        <button class="btn btn-info" ng-click="pager.setPeriod(8)">8 hour</button>
+        <button class="btn btn-info" ng-click="pager.setPeriod(24)">24 hour</button>
+
     </div>
 
     <!-- TODO gmaps libraries=weather,geometry,visualization -->
