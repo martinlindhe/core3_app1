@@ -49,7 +49,7 @@
   };
 
   bindHtml = function(element, html) {
-    return element.attr('ng-bind-html-unsafe', html);
+    return element.attr('ng-bind', html);
   };
 
   roundStep = function(value, precision, step, floor) {
@@ -94,7 +94,7 @@
         ngModelHigh: '=?',
         translate: '&'
       },
-      template: '<span class="bar"></span><span class="bar selection"></span><span class="pointer"></span><span class="pointer"></span><span class="bubble selection"></span><span ng-bind-html-unsafe="translate({value: floor})" class="bubble limit"></span><span ng-bind-html-unsafe="translate({value: ceiling})" class="bubble limit"></span><span class="bubble"></span><span class="bubble"></span><span class="bubble"></span>',
+      template: '<span class="bar"></span><span class="bar selection"></span><span class="pointer"></span><span class="pointer"></span><span class="bubble selection"></span><span ng-bind="translate({value: floor})" class="bubble limit"></span><span ng-bind="translate({value: ceiling})" class="bubble limit"></span><span class="bubble"></span><span class="bubble"></span><span class="bubble"></span>',
       compile: function(element, attributes) {
         var ceilBub, cmbBub, e, flrBub, fullBar, highBub, lowBub, maxPtr, minPtr, range, refHigh, refLow, selBar, selBub, watchables, _i, _len, _ref, _ref1;
 
@@ -131,7 +131,7 @@
           watchables.push(refHigh);
         }
         return {
-          post: function(scope, element, attributes) {
+          post: function(scope, element, attributes, ngModelCtrl) {
             var barWidth, boundToInputs, dimensions, maxOffset, maxValue, minOffset, minValue, ngDocument, offsetRange, pointerHalfWidth, updateDOM, valueRange, w, _j, _len1;
 
             boundToInputs = false;
@@ -143,12 +143,12 @@
             }
             pointerHalfWidth = barWidth = minOffset = maxOffset = minValue = maxValue = valueRange = offsetRange = void 0;
             dimensions = function() {
-              var value, _j, _len1, _ref2, _ref3;
+              var value, _j, _len1;
 
-              if ((_ref2 = scope.precision) == null) {
+              if (scope.precision == null) {
                 scope.precision = 0;
               }
-              if ((_ref3 = scope.step) == null) {
+              if (scope.step == null) {
                 scope.step = 1;
               }
               for (_j = 0, _len1 = watchables.length; _j < _len1; _j++) {
@@ -281,6 +281,9 @@
                   }
                   newValue = roundStep(newValue, parseInt(scope.precision), parseFloat(scope.step), parseFloat(scope.floor));
                   scope[ref] = newValue;
+                  if (ref === 'ngModel') {
+                    ngModelCtrl.$setViewValue(newValue);
+                  }
                   return scope.$apply();
                 };
                 onStart = function(event) {

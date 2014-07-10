@@ -10,7 +10,7 @@ Date.prototype.yyyymmdd = function() {
         (dd[1] ? dd : "0" + dd[0]); // padding
 };
 
-angular.module('horseMap', ['google-maps'])
+angular.module('horseMap', ['google-maps', 'uiSlider'])
     .controller('GoogleMapController', function($scope, $http, $log) {
 
         $scope.map = {
@@ -33,11 +33,8 @@ angular.module('horseMap', ['google-maps'])
 
         $scope.unixTime = 1400623200; // 2014-05-21 00:00:00;
         var date = new Date($scope.unixTime * 1000);
-        $log.info('yyyymmdd ' + date.yyyymmdd());
 
         /// TODO Start date 20140521, end 20140701
-
-        // TODO slider med unix timestamp date1, increment 24h, rendera med ng filter
 
 /*
         $http({method: 'GET', url: 'geojson/hagen'}).
