@@ -26,7 +26,7 @@ angular.module('horseMap', ['google-maps'])
             },
             setPeriod: function (hours) {
                 $scope.pager.increaseSeconds = hours * 60 * 60;
-                $scope.pager.setPage($scope.pager.currentPage); // XXX force reload
+                $scope.pager.setPage($scope.pager.currentPage); // HACK forces reload
             }
         }
 

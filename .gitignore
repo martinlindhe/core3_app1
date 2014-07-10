@@ -4,10 +4,8 @@ composer.phar
 composer.lock
 coverage-report-html
 components
-*.sublime-workspace
 tags
 scss/compiled
 js/compiled
 settings.php
-horse-cache
-
+cache

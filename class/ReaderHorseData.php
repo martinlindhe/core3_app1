@@ -40,22 +40,28 @@ class MapMarker
 
 class ReaderHorseData
 {
+    static $parsedData = array();
     /**
      * @param $filterTs timestamp to start at
      * @param $filterDuration in seconds
      * @return array of map markers
      */
-    public static function parseIntoMarkers($csvFileName, $filterTs, $filterDuration)
+    public static function parseIntoMarkers($horseId, $filterTs, $filterDuration)
     {
-        $csvReader = new \Reader\Csv();
-        $csvReader->setStartLine(2);
-        $csvReader->setDelimiter("\t");
-        $rows = $csvReader->parseFileToObjects($csvFileName, new CsvHorseData());
+        $csvFileName = __DIR__.'/../horse-data/'.$horseId.'.csv';
+
+        if (!isset(self::$parsedData[$horseId])) {
+            echo "DEBUG: initializing parsed horse data for id ".$horseId."\n";
+            $csvReader = new \Reader\Csv();
+            $csvReader->setStartLine(2);
+            $csvReader->setDelimiter("\t");
+            self::$parsedData[$horseId] = $csvReader->parseFileToObjects($csvFileName, new CsvHorseData());
+        }
 
         $res = array();
 
         $id = 0;
-        foreach ($rows as $row) {
+        foreach (self::$parsedData[$horseId] as $row) {
             $id++;
             if ($row->ttf == '') {
                 // these rows dont have coords
