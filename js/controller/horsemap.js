@@ -10,7 +10,7 @@ Date.prototype.yyyymmdd = function() {
         (dd[1] ? dd : "0" + dd[0]); // padding
 };
 
-angular.module('horseMap', ['google-maps', 'uiSlider'])
+angular.module('horseMap', ['google-maps'])
     .controller('GoogleMapController', function($scope, $http, $log) {
 
         $scope.map = {
