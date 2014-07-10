@@ -1,11 +1,11 @@
 <?php
 
-// TODO add json view for \ReaderCsvHagenPos::addMarkersToMap($map, __DIR__.'/pos4.csv');
 // TODO show each line in polyline in different colors
 
 //TODO slider med unix timestamp date1, increment 24h, rendera med ng filter
 //  <input slider ng-model="unixTime" type="text" options="{ from: 1, to: 100, step: 1 }" />
 
+//TODO reset button: reset zoom and focus
 
 // FIXME <polyline> due to bug, if array is initally empty view never get populated,
 //                 we work around with ng-if,
@@ -85,6 +85,8 @@
         <button class="btn btn-info" ng-click="pager.setPeriod(24*7)">7 days</button>
         <button class="btn btn-info" ng-click="pager.setPeriod(24*14)">14 days</button>
         <button class="btn btn-info" ng-click="pager.setPeriod(24*30)">30 days</button>
+
+
 
     </div>
 

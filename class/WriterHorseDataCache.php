@@ -3,6 +3,38 @@
 class WriterHorseDataCache
 {
     /**
+     * Allow 0-9 and - in key name
+     */
+    public static function isValidCacheKey($key)
+    {
+        if (preg_match('/^[0-9-]+$/', $key) != 1) {
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * Quickly pass thru cache file from disk to client
+     * SIDE EFFECT: exits application
+     */
+    public static function passThru($cacheKey)
+    {
+        if (!self::isValidCacheKey($cacheKey)) {
+            throw new \Exception('bad input');
+        }
+
+        $cacheFileName = realpath(__DIR__.'/../horse-data/cache').'/'.$cacheKey;
+        if (!file_exists($cacheFileName)) {
+            throw new \Exception('no such file');
+        }
+
+        // NOTE cannot detect x-sendfile will work for given path
+        //header('X-Sendfile: '.$cacheFileName);
+
+        readfile($cacheFileName);
+        exit;
+    }
+    /**
      * Generates cached file if it does not already exist
      *
      * @param $force unconditionally create new disk cache
