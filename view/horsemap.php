@@ -77,8 +77,8 @@
 
     <div class="container">
 
-        <pre>{{ pager.unixCurrentTime * 1000 | date:'medium' }} to {{ (pager.unixCurrentTime + pager.increaseSeconds) * 1000 | date:'medium' }}</pre>
-        <pre>{{ pager.increaseSeconds / 3600 }} hours</pre>
+        <pre>{{ pager.unixCurrentTime * 1000 | date:'medium' }} to {{ (pager.unixCurrentTime + pager.increaseSeconds) * 1000 | date:'medium' }} - {{ pager.increaseSeconds / 3600 }} hours</pre>
+        <pre>red {{ horseRedMarkers.length }}, blue {{ horseBlueMarkers.length }}</pre>
         <!--
         <pager total-items="pager.totalItems" ng-model="pager.currentPage"></pager>
         <br/>
