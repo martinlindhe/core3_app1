@@ -51,12 +51,22 @@
                 stroke="{ color: '#d04f4f', weight: 3}"
                 />
 
+            <circle
+                    ng-if="horseBlueMarkers.length > 1"
+                    ng-repeat="mark in horseBlueMarkers"
+                    center="mark"
+                    radius="10"
+                    stroke="{ color: '#5139af', weight: 3, opacity: 0.8 }"
+                    fill="{ color: '#5139af', opacity: 0.8 }"
+                    />
+
+<!--
             <polyline
                 ng-if="horseBlueMarkers.length > 1"
                 path="horseBlueMarkers"
                 stroke="{ color: '#5139af', weight: 3}"
                 />
-
+-->
             <markers
                 ng-if="showGroundMarkers"
                 models="horseGroundMarkers"
