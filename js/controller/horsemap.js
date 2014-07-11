@@ -1,5 +1,7 @@
 'use strict';
 
+// BUG https://github.com/nlaplante/angular-google-maps/issues/522
+
 Date.prototype.horseDateTime = function() {
     var yyyy = this.getFullYear().toString();
     var mm = (this.getMonth()+1).toString(); // getMonth() is zero-based
@@ -20,6 +22,7 @@ angular.module('horseMap', ['google-maps'])
     .controller('GoogleMapController', function($scope, $http, $log) {
 
         $scope.pager = {
+            showGroundMarkers: false,
             totalItems: 64,
             currentPage: 0,
             increaseSeconds: 60 * 60 * 1, // 1h
@@ -58,6 +61,9 @@ angular.module('horseMap', ['google-maps'])
                         if ($scope.loadedTiles) {
                             return;
                         }
+                        // BUG theres no way to load geojson to map without touching internals
+                        // BUG https://github.com/nlaplante/angular-google-maps/issues/551
+
                         $scope.loadedTiles = true;
                         map.data.loadGeoJson('api/geojson/hagen');
                         //map.data.loadGeoJson('api/geojson/stangsel');
@@ -69,23 +75,13 @@ angular.module('horseMap', ['google-maps'])
         $scope.unixStartTime = 1400709600; // 2014-05-22 00:00:00;
         $scope.unixCurrentTime = $scope.unixStartTime;
 
-        $scope.pager.setPage(0); // XXX INITIAL load
-
-        // https://github.com/nlaplante/angular-google-maps/issues/522
+        $scope.pager.setPage(0); // HACK INITIAL load
 
 
-
-/*
-        $http({method: 'GET', url: 'geojson/hagen'}).
+        // TODO load ground points - ONCE, first time user clicks checkbox
+        $http({method: 'GET', url: 'api/horse-groundpoints'}).
             success(function(data, status, headers, config) {
-                $log.info("got hagen");
-
-                // XXX how to map geojson file into a shape?! this should be the un-hacky way
-                // BUG https://github.com/nlaplante/angular-google-maps/issues/551
-                $scope.shapeHagen = data.features;
-                $log.info(data.features);
+                $scope.horseGroundMarkers = data;
             });
-*/
-
 
     });

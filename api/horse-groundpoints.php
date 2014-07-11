@@ -1,3 +1,6 @@
 <?php
 
-// TODO add json view for \ReaderCsvHagenPos::addMarkersToMap($map, __DIR__.'/pos4.csv');
+// TODO cache to disk
+
+$objs = ReaderCsvHagenPos::parseToObjects(__DIR__.'/../horse-data/pos4.csv');
+echo \Writer\Json::encodeSlim($objs);

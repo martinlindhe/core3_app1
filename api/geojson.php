@@ -1,7 +1,19 @@
 <?php
 
-// FIXME should be param[0], core api view routing should fix param
-$jsonFile = __DIR__.'/../geojson/'.$param[1].'.geojson'; // TODO isValidViewName
+function isValidViewName($key)
+{
+    if (preg_match('/^[a-zA-Z0-9-]+$/', $key) != 1) {
+        return false;
+    }
+    return true;
+}
+
+$viewName = $param[0];
+if (!isValidViewName($viewName)) {
+    throw new \Exception('bad input');
+}
+
+$jsonFile = __DIR__.'/../geojson/'.$viewName.'.geojson';
 
 if (!file_exists($jsonFile)) {
     http_response_code(404);

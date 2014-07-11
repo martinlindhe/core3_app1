@@ -27,22 +27,34 @@ class CsvColumnHagenPos
     var $extra;
 }
 
+
 class ReaderCsvHagenPos
 {
-    // returns array of map markers
-    public static function addMarkersToMap(\JsMap\Google $map, $csvFileName)
+    /**
+     * @return array of CsvColumnHagenPos
+     */
+    public static function parseToObjects($csvFileName)
     {
+        // TODO parse to own object type and clean data some, see commented  out code below
         $csvReader = new \Reader\Csv();
         $csvReader->setStartLine(1);
         $rows = $csvReader->parseFileToObjects($csvFileName, new CsvColumnHagenPos());
 
         foreach ($rows as $row) {
             try {
+                // convert coordinates
                 $coord = \JsMap\CoordinateConverter::SWEREF99TM_to_WGS84($row->coordN, $row->coordE);
-                $mark = new \JsMap\GoogleMapMarker($coord->latitude, $coord->longitude);
+                $row->latitude = $coord->latitude;
+                $row->longitude = $coord->longitude;
+
             } catch (\Exception $e) {
                 continue;
             }
+        }
+
+        return $rows;
+
+            /*
             $infoStr = \Helper\Object::describePropertiesWithValues($row, array('coordE', 'coordN'));
             $infoStr = str_replace("\n", '<br/>', trim($infoStr));
             $info = '<div class=\"mapInfoWnd\">'.$infoStr.'</div>';
@@ -88,6 +100,7 @@ class ReaderCsvHagenPos
                 '}'
             );
             $map->addMarker($mark);
-        }
+            */
+
     }
 }

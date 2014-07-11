@@ -20,12 +20,12 @@ class WriterHorseDataCache
     public static function passThru($cacheKey)
     {
         if (!self::isValidCacheKey($cacheKey)) {
-            throw new \Exception('bad input');
+            throw new \InvalidArgumentException();
         }
 
         $cacheFileName = realpath(__DIR__.'/../horse-data/cache').'/'.$cacheKey;
         if (!file_exists($cacheFileName)) {
-            throw new \Exception('no such file');
+            throw new \FileNotFoundException();
         }
 
         // NOTE cannot detect x-sendfile will work for given path
