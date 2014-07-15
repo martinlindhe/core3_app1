@@ -104,6 +104,8 @@
 	check out <a href="books/Book/Gatsby">books</a><br/>
 	or <a href="spreadsheet">spreadsheet</a><br/>
     or <a href="horsemap">horse map</a><br/>
+
+	or <a href="tor-map">tor map</a><br/>
 </div>
 
 
