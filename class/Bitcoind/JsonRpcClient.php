@@ -10,7 +10,7 @@ class JsonRpcResponse
 }
 
 /**
- * API client for the bitcoind JSON-RPC APO
+ * Client for the bitcoind JSON-RPC API
  */
 class JsonRpcClient
 {
@@ -55,12 +55,8 @@ class JsonRpcClient
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-
-    //    curl_setopt($ch, CURLOPT_VERBOSE, true); // debug
-
         curl_setopt($ch, CURLOPT_POST, true);
         curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-
         curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
 
         $output = curl_exec($ch);
@@ -88,7 +84,7 @@ class JsonRpcClient
 
         $params = array(
             "method" => $methodName,
-            "params" => $params,        // TODO test case that use params
+            "params" => $params,
             "id" => $this->requestCounter,
         );
 
