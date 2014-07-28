@@ -1,6 +1,6 @@
 <?php
 
-$doc = new \Writer\DocumentHtml5();
+$doc = new \Core3\Writer\DocumentHtml5();
 
 $map = new \JsMap\Google();
 $map->setCenter(new \JsMap\Coordinate(59.742656, 17.675384));
@@ -29,7 +29,7 @@ $doc->embedCss(
  $reader = new ReaderTorNodes();
  $nodes = $reader->parse();
 
-$geoip = new \Web\GeoIp();
+$geoip = new \Core3\Web\GeoIp();
 
 foreach ($nodes->routers as $router) {
 
