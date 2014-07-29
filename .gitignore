@@ -7,6 +7,7 @@ components
 tags
 scss/compiled
 js/compiled
-settings.php
+settings/database.php
+settings/settings.php
 bitcoinSettings.php
 cache
